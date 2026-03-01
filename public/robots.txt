@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Indique à Google où trouver ton plan de site
+Sitemap: https://wayl.dev/sitemap.xml
