@@ -52,17 +52,120 @@ const i18n = {
     projects: [
       { title: "CAMAGRU", subtitle: "Instagram-like Web Application", description: "Full-stack social platform with real-time image manipulation, authentication system, and notification engine." },
     ],
+    seo: {
+      home: { title: "WAYL | Cybersecurity Engineer & Full-Stack Developer", description: "Security-focused developer building resilient systems. Specializing in offensive security and DevSecOps at École 42 Paris." },
+      portfolio: { title: "Portfolio | WAYL", description: "Selected cybersecurity and full-stack development projects by WAYL." },
+      contact: { title: "Contact | WAYL", description: "Get in touch with WAYL for cybersecurity and development inquiries." },
+    },
     footer: "© 2026 WAYL. ALL RIGHTS RESERVED.",
   },
-  // ... (les autres langues sont conservées à l'identique)
-  ru: { nav: { home: "ГЛАВНАЯ", portfolio: "ПОРТФОЛИО", contact: "КОНТАКТ" }, hero: { subtitle: "ИНЖЕНЕР КИБЕРБЕЗОПАСНОСТИ И ФУЛСТЕК-РАЗРАБОТЧИК", desc: "Разработчик, ориентированный на безопасность, создающий устойчивые системы. Специализация — наступательная безопасность и DevSecOps в École 42 Paris.", viewWork: "РАБОТЫ", contact: "КОНТАКТ" }, portfolio: { label: "ИЗБРАННЫЕ РАБОТЫ", title: "Портфолио" }, contact: { label: "СВЯЗАТЬСЯ", title: "Давайте", title2: "Работать вместе", name: "ВАШЕ ИМЯ", email: "ВАШ EMAIL", message: "ВАШЕ СООБЩЕНИЕ", send: "ОТПРАВИТЬ", infoLabel: "КОНТАКТЫ", socialLabel: "СОЦСЕТИ", quote: '"Строим защищённые системы,', quote2: 'взламываем незащищённые."' }, projects: [ { title: "CAMAGRU", subtitle: "Веб-приложение в стиле Instagram", description: "Полноценная социальная платформа с обработкой изображений в реальном времени, системой аутентификации и уведомлениями." }, ], footer: "© 2026 WAYL. ВСЕ ПРАВА ЗАЩИЩЕНЫ.", },
-  ar: { nav: { home: "الرئيسية", portfolio: "الأعمال", contact: "اتصل" }, hero: { subtitle: "مهندس أمن سيبراني ومطور متكامل", desc: "مطور متخصص في الأمن، يبني أنظمة مرنة. حالياً متخصص في الأمن الهجومي و DevSecOps في École 42 Paris.", viewWork: "عرض الأعمال", contact: "اتصل بي" }, portfolio: { label: "أعمال مختارة", title: "الأعمال" }, contact: { label: "تواصل معي", title: "لنعمل", title2: "معاً", name: "اسمك", email: "بريدك الإلكتروني", message: "رسالتك", send: "إرسال", infoLabel: "معلومات الاتصال", socialLabel: "التواصل الاجتماعي", quote: '"نبني أنظمة آمنة،', quote2: 'ونخترق غير الآمنة."' }, projects: [ { title: "CAMAGRU", subtitle: "تطبيق ويب شبيه بإنستغرام", description: "منصة اجتماعية متكاملة مع معالجة الصور في الوقت الفعلي ونظام المصادقة والإشعارات." }, ], footer: "© 2026 WAYL. جميع الحقوق محفوظة.", },
-  zh: { nav: { home: "首页", portfolio: "作品集", contact: "联系" }, hero: { subtitle: "网络安全工程师 & 全栈开发者", desc: "专注安全的开发者，构建弹性系统。目前在巴黎42学校专攻进攻性安全和DevSecOps。", viewWork: "查看作品", contact: "联系我" }, portfolio: { label: "精选作品", title: "作品集" }, contact: { label: "联系方式", title: "让我们", title2: "一起合作", name: "您的姓名", email: "您的邮箱", message: "您的留言", send: "发送消息", infoLabel: "联系信息", socialLabel: "社交媒体", quote: '"构建安全的系统，', quote2: '攻破不安全的系统。"' }, projects: [ { title: "CAMAGRU", subtitle: "类Instagram网页应用", description: "全栈社交平台，具有实时图像处理、认证 system和通知引擎。" }, ], footer: "© 2026 WAYL. 保留所有权利。", },
-  ja: { nav: { home: "ホーム", portfolio: "ポートフォリオ", contact: "連絡先" }, hero: { subtitle: "サイバーセキュリティエンジニア & フルスタック開発者", desc: "セキュリティに特化した開発者として、堅牢なシステムを構築。現在École 42 Parisで攻撃的セキュリティとDevSecOpsを専攻中。", viewWork: "作品を見る", contact: "連絡する" }, portfolio: { label: "厳選された作品", title: "ポートフォリオ" }, contact: { label: "お問い合わせ", title: "一緒に", title2: "働きましょう", name: "お名前", email: "メールアドレス", message: "メッセージ", send: "送信する", infoLabel: "連絡先情報", socialLabel: "ソーシャル", quote: '"安全なシステムを構築し、', quote2: '安全でないシステムを破壊する。"' }, projects: [ { title: "CAMAGRU", subtitle: "Instagram風ウェブアプリ", description: "リアルタイム画像処理、認証システム、通知エンジンを備えたフルスタックソーシャルプラットフォーム。" }, ], footer: "© 2026 WAYL. 全著作権所有。", },
-  es: { nav: { home: "INICIO", portfolio: "PORTAFOLIO", contact: "CONTACTO" }, hero: { subtitle: "INGENIERO DE CIBERSEGURIDAD Y DESARROLLADOR FULL-STACK", desc: "Desarrollador enfocado en seguridad, construyendo sistemas resilientes. Actualmente especializado en seguridad ofensiva y DevSecOps en École 42 Paris.", viewWork: "VER TRABAJOS", contact: "CONTACTO" }, portfolio: { label: "TRABAJOS SELECCIONADOS", title: "Portafolio" }, contact: { label: "CONTACTAR", title: "Trabajemos", title2: "Juntos", name: "TU NOMBRE", email: "TU EMAIL", message: "TU MENSAJE", send: "ENVIAR MENSAJE", infoLabel: "INFO DE CONTACTO", socialLabel: "REDES SOCIALES", quote: '"Construyendo sistemas seguros,', quote2: 'rompiendo los inseguros."' }, projects: [ { title: "CAMAGRU", subtitle: "Aplicación web tipo Instagram", description: "Plataforma social full-stack con manipulación de imágenes en tiempo real, sistema de autenticación y motor de notificaciones." }, ], footer: "© 2026 WAYL. TODOS LOS DERECHOS RESERVADOS.", },
-  it: { nav: { home: "HOME", portfolio: "PORTFOLIO", contact: "CONTATTO" }, hero: { subtitle: "INGEGNERE CYBERSECURITY E SVILUPPATORE FULL-STACK", desc: "Sviluppatore focalizzato sulla sicurezza, costruisce sistemi resilienti. Attualmente specializzato in sicurezza offensiva et DevSecOps presso École 42 Paris.", viewWork: "VEDI LAVORI", contact: "CONTATTO" }, portfolio: { label: "LAVORI SELEZIONATI", title: "Portfolio" }, contact: { label: "CONTATTAMI", title: "Lavoriamo", title2: "Insieme", name: "IL TUO NOME", email: "LA TUA EMAIL", message: "IL TUO MESSAGGIO", send: "INVIA MESSAGGIO", infoLabel: "INFO CONTATTO", socialLabel: "SOCIAL", quote: '"Costruiamo sistemi sicuri,', quote2: 'violiamo quelli insicuri."' }, projects: [ { title: "CAMAGRU", subtitle: "Applicazione web tipo Instagram", description: "Piattaforma social full-stack con manipolazione immagini in tempo reale, sistema di autenticazione e motore di notifiche." }, ], footer: "© 2026 WAYL. TUTTI I DIRITTI RISERVATI.", },
-  nl: { nav: { home: "HOME", portfolio: "PORTFOLIO", contact: "CONTACT" }, hero: { subtitle: "CYBERSECURITY ENGINEER & FULL-STACK DEVELOPER", desc: "Beveiligingsgerichte ontwikkelaar die veerkrachtige systemen bouwt. Momenteel gespecialiseerd in offensieve beveiliging en DevSecOps bij École 42 Paris.", viewWork: "BEKIJK WERK", contact: "CONTACT" }, portfolio: { label: "GESELECTEERD WERK", title: "Portfolio" }, contact: { label: "NEEM CONTACT OP", title: "Laten we", title2: "Samenwerken", name: "UW NAAM", email: "UW EMAIL", message: "UW BERICHT", send: "VERSTUUR BERICHT", infoLabel: "CONTACTGEGEVENS", socialLabel: "SOCIAAL", quote: '"Veilige systemen bouwen,', quote2: 'onveilige systemen kraken."' }, projects: [ { title: "CAMAGRU", subtitle: "Instagram-achtige webapplicatie", description: "Full-stack sociaal platform met realtime beeldbewerking, authenticatiesysteem en notificatie-engine." }, ], footer: "© 2026 WAYL. ALLE RECHTEN VOORBEHOUDEN.", }
+  ru: {
+    nav: { home: "ГЛАВНАЯ", portfolio: "ПОРТФОЛИО", contact: "КОНТАКТ" },
+    hero: { subtitle: "ИНЖЕНЕР КИБЕРБЕЗОПАСНОСТИ И ФУЛСТЕК-РАЗРАБОТЧИК", desc: "Разработчик, ориентированный на безопасность, создающий устойчивые системы. Специализация — наступательная безопасность и DevSecOps в École 42 Paris.", viewWork: "РАБОТЫ", contact: "КОНТАКТ" },
+    portfolio: { label: "ИЗБРАННЫЕ РАБОТЫ", title: "Портфолио" },
+    contact: { label: "СВЯЗАТЬСЯ", title: "Давайте", title2: "Работать вместе", name: "ВАШЕ ИМЯ", email: "ВАШ EMAIL", message: "ВАШЕ СООБЩЕНИЕ", send: "ОТПРАВИТЬ", infoLabel: "КОНТАКТЫ", socialLabel: "СОЦСЕТИ", quote: '"Строим защищённые системы,', quote2: 'взламываем незащищённые."' },
+    projects: [
+      { title: "CAMAGRU", subtitle: "Веб-приложение в стиле Instagram", description: "Полноценная социальная платформа с обработкой изображений в реальном времени, системой аутентификации и уведомлениями." },
+    ],
+    seo: {
+      home: { title: "WAYL | Инженер кибербезопасности и фулстек-разработчик", description: "Разработчик, ориентированный на безопасность, создающий устойчивые системы. Специализация — наступательная безопасность и DevSecOps в École 42 Paris." },
+      portfolio: { title: "Портфолио | WAYL", description: "Избранные проекты в области кибербезопасности и фулстек-разработки от WAYL." },
+      contact: { title: "Контакт | WAYL", description: "Свяжитесь с WAYL для вопросов по кибербезопасности и разработке." },
+    },
+    footer: "© 2026 WAYL. ВСЕ ПРАВА ЗАЩИЩЕНЫ.",
+  },
+  ar: {
+    nav: { home: "الرئيسية", portfolio: "الأعمال", contact: "اتصل" },
+    hero: { subtitle: "مهندس أمن سيبراني ومطور متكامل", desc: "مطور متخصص في الأمن، يبني أنظمة مرنة. حالياً متخصص في الأمن الهجومي و DevSecOps في École 42 Paris.", viewWork: "عرض الأعمال", contact: "اتصل بي" },
+    portfolio: { label: "أعمال مختارة", title: "الأعمال" },
+    contact: { label: "تواصل معي", title: "لنعمل", title2: "معاً", name: "اسمك", email: "بريدك الإلكتروني", message: "رسالتك", send: "إرسال", infoLabel: "معلومات الاتصال", socialLabel: "التواصل الاجتماعي", quote: '"نبني أنظمة آمنة،', quote2: 'ونخترق غير الآمنة."' },
+    projects: [
+      { title: "CAMAGRU", subtitle: "تطبيق ويب شبيه بإنستغرام", description: "منصة اجتماعية متكاملة مع معالجة الصور في الوقت الفعلي ونظام المصادقة والإشعارات." },
+    ],
+    seo: {
+      home: { title: "WAYL | مهندس أمن سيبراني ومطور متكامل", description: "مطور متخصص في الأمن، يبني أنظمة مرنة. حالياً متخصص في الأمن الهجومي و DevSecOps في École 42 Paris." },
+      portfolio: { title: "الأعمال | WAYL", description: "مشاريع مختارة في الأمن السيبراني والتطوير المتكامل من WAYL." },
+      contact: { title: "اتصل | WAYL", description: "تواصل مع WAYL لاستفسارات الأمن السيبراني والتطوير." },
+    },
+    footer: "© 2026 WAYL. جميع الحقوق محفوظة.",
+  },
+  zh: {
+    nav: { home: "首页", portfolio: "作品集", contact: "联系" },
+    hero: { subtitle: "网络安全工程师 & 全栈开发者", desc: "专注安全的开发者，构建弹性系统。目前在巴黎42学校专攻进攻性安全和DevSecOps。", viewWork: "查看作品", contact: "联系我" },
+    portfolio: { label: "精选作品", title: "作品集" },
+    contact: { label: "联系方式", title: "让我们", title2: "一起合作", name: "您的姓名", email: "您的邮箱", message: "您的留言", send: "发送消息", infoLabel: "联系信息", socialLabel: "社交媒体", quote: '"构建安全的系统，', quote2: '攻破不安全的系统。"' },
+    projects: [
+      { title: "CAMAGRU", subtitle: "类Instagram网页应用", description: "全栈社交平台，具有实时图像处理、认证系统和通知引擎。" },
+    ],
+    seo: {
+      home: { title: "WAYL | 网络安全工程师 & 全栈开发者", description: "专注安全的开发者，构建弹性系统。目前在巴黎42学校专攻进攻性安全和DevSecOps。" },
+      portfolio: { title: "作品集 | WAYL", description: "WAYL精选的网络安全和全栈开发项目。" },
+      contact: { title: "联系 | WAYL", description: "联系WAYL，了解网络安全和开发相关事宜。" },
+    },
+    footer: "© 2026 WAYL. 保留所有权利。",
+  },
+  ja: {
+    nav: { home: "ホーム", portfolio: "ポートフォリオ", contact: "連絡先" },
+    hero: { subtitle: "サイバーセキュリティエンジニア & フルスタック開発者", desc: "セキュリティに特化した開発者として、堅牢なシステムを構築。現在École 42 Parisで攻撃的セキュリティとDevSecOpsを専攻中。", viewWork: "作品を見る", contact: "連絡する" },
+    portfolio: { label: "厳選された作品", title: "ポートフォリオ" },
+    contact: { label: "お問い合わせ", title: "一緒に", title2: "働きましょう", name: "お名前", email: "メールアドレス", message: "メッセージ", send: "送信する", infoLabel: "連絡先情報", socialLabel: "ソーシャル", quote: '"安全なシステムを構築し、', quote2: '安全でないシステムを破壊する。"' },
+    projects: [
+      { title: "CAMAGRU", subtitle: "Instagram風ウェブアプリ", description: "リアルタイム画像処理、認証システム、通知エンジンを備えたフルスタックソーシャルプラットフォーム。" },
+    ],
+    seo: {
+      home: { title: "WAYL | サイバーセキュリティエンジニア & フルスタック開発者", description: "セキュリティに特化した開発者として、堅牢なシステムを構築。現在École 42 Parisで攻撃的セキュリティとDevSecOpsを専攻中。" },
+      portfolio: { title: "ポートフォリオ | WAYL", description: "WAYLによるサイバーセキュリティとフルスタック開発の厳選プロジェクト。" },
+      contact: { title: "連絡先 | WAYL", description: "サイバーセキュリティと開発に関するお問い合わせはWAYLまで。" },
+    },
+    footer: "© 2026 WAYL. 全著作権所有。",
+  },
+  es: {
+    nav: { home: "INICIO", portfolio: "PORTAFOLIO", contact: "CONTACTO" },
+    hero: { subtitle: "INGENIERO DE CIBERSEGURIDAD Y DESARROLLADOR FULL-STACK", desc: "Desarrollador enfocado en seguridad, construyendo sistemas resilientes. Actualmente especializado en seguridad ofensiva y DevSecOps en École 42 Paris.", viewWork: "VER TRABAJOS", contact: "CONTACTO" },
+    portfolio: { label: "TRABAJOS SELECCIONADOS", title: "Portafolio" },
+    contact: { label: "CONTACTAR", title: "Trabajemos", title2: "Juntos", name: "TU NOMBRE", email: "TU EMAIL", message: "TU MENSAJE", send: "ENVIAR MENSAJE", infoLabel: "INFO DE CONTACTO", socialLabel: "REDES SOCIALES", quote: '"Construyendo sistemas seguros,', quote2: 'rompiendo los inseguros."' },
+    projects: [
+      { title: "CAMAGRU", subtitle: "Aplicación web tipo Instagram", description: "Plataforma social full-stack con manipulación de imágenes en tiempo real, sistema de autenticación y motor de notificaciones." },
+    ],
+    seo: {
+      home: { title: "WAYL | Ingeniero de Ciberseguridad y Desarrollador Full-Stack", description: "Desarrollador enfocado en seguridad, construyendo sistemas resilientes. Especializado en seguridad ofensiva y DevSecOps en École 42 Paris." },
+      portfolio: { title: "Portafolio | WAYL", description: "Proyectos seleccionados de ciberseguridad y desarrollo full-stack por WAYL." },
+      contact: { title: "Contacto | WAYL", description: "Contacta con WAYL para consultas de ciberseguridad y desarrollo." },
+    },
+    footer: "© 2026 WAYL. TODOS LOS DERECHOS RESERVADOS.",
+  },
+  it: {
+    nav: { home: "HOME", portfolio: "PORTFOLIO", contact: "CONTATTO" },
+    hero: { subtitle: "INGEGNERE CYBERSECURITY E SVILUPPATORE FULL-STACK", desc: "Sviluppatore focalizzato sulla sicurezza, costruisce sistemi resilienti. Attualmente specializzato in sicurezza offensiva et DevSecOps presso École 42 Paris.", viewWork: "VEDI LAVORI", contact: "CONTATTO" },
+    portfolio: { label: "LAVORI SELEZIONATI", title: "Portfolio" },
+    contact: { label: "CONTATTAMI", title: "Lavoriamo", title2: "Insieme", name: "IL TUO NOME", email: "LA TUA EMAIL", message: "IL TUO MESSAGGIO", send: "INVIA MESSAGGIO", infoLabel: "INFO CONTATTO", socialLabel: "SOCIAL", quote: '"Costruiamo sistemi sicuri,', quote2: 'violiamo quelli insicuri."' },
+    projects: [
+      { title: "CAMAGRU", subtitle: "Applicazione web tipo Instagram", description: "Piattaforma social full-stack con manipolazione immagini in tempo reale, sistema di autenticazione e motore di notifiche." },
+    ],
+    seo: {
+      home: { title: "WAYL | Ingegnere Cybersecurity e Sviluppatore Full-Stack", description: "Sviluppatore focalizzato sulla sicurezza, costruisce sistemi resilienti. Specializzato in sicurezza offensiva e DevSecOps presso École 42 Paris." },
+      portfolio: { title: "Portfolio | WAYL", description: "Progetti selezionati di cybersecurity e sviluppo full-stack di WAYL." },
+      contact: { title: "Contatto | WAYL", description: "Contatta WAYL per richieste di cybersecurity e sviluppo." },
+    },
+    footer: "© 2026 WAYL. TUTTI I DIRITTI RISERVATI.",
+  },
+  nl: {
+    nav: { home: "HOME", portfolio: "PORTFOLIO", contact: "CONTACT" },
+    hero: { subtitle: "CYBERSECURITY ENGINEER & FULL-STACK DEVELOPER", desc: "Beveiligingsgerichte ontwikkelaar die veerkrachtige systemen bouwt. Momenteel gespecialiseerd in offensieve beveiliging en DevSecOps bij École 42 Paris.", viewWork: "BEKIJK WERK", contact: "CONTACT" },
+    portfolio: { label: "GESELECTEERD WERK", title: "Portfolio" },
+    contact: { label: "NEEM CONTACT OP", title: "Laten we", title2: "Samenwerken", name: "UW NAAM", email: "UW EMAIL", message: "UW BERICHT", send: "VERSTUUR BERICHT", infoLabel: "CONTACTGEGEVENS", socialLabel: "SOCIAAL", quote: '"Veilige systemen bouwen,', quote2: 'onveilige systemen kraken."' },
+    projects: [
+      { title: "CAMAGRU", subtitle: "Instagram-achtige webapplicatie", description: "Full-stack sociaal platform met realtime beeldbewerking, authenticatiesysteem en notificatie-engine." },
+    ],
+    seo: {
+      home: { title: "WAYL | Cybersecurity Engineer & Full-Stack Developer", description: "Beveiligingsgerichte ontwikkelaar die veerkrachtige systemen bouwt. Gespecialiseerd in offensieve beveiliging en DevSecOps bij École 42 Paris." },
+      portfolio: { title: "Portfolio | WAYL", description: "Geselecteerde cybersecurity- en full-stack ontwikkelingsprojecten van WAYL." },
+      contact: { title: "Contact | WAYL", description: "Neem contact op met WAYL voor cybersecurity- en ontwikkelingsvragen." },
+    },
+    footer: "© 2026 WAYL. ALLE RECHTEN VOORBEHOUDEN.",
+  },
 };
+
 
 // ─── DATA ────────────────────────────────────────────────
 const PROJECT_BASE = [
@@ -289,22 +392,35 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "instant" }); 
   };
 
+  const pageKey = page.toLowerCase();
+  const seo = tx.seo?.[pageKey] || tx.seo?.home;
+
   return (
     <HelmetProvider>
       <ThemeContext.Provider value={t}>
         <LangContext.Provider value={lang}>
           <div dir={LANGS[lang].dir} style={{ background: t.bg, minHeight: "100vh", color: t.text, overflowX: "hidden", transition: "background 0.4s ease, color 0.4s ease" }}>
             
-            <Helmet>
-              <title>{`${page} | WAYL - Cybersecurity & Dev`}</title>
-              <meta name="description" content={tx.hero.desc} />
-              <link rel="canonical" href="https://wayl.dev" />
-              <meta property="og:title" content={`WAYL | ${page}`} />
-              <meta property="og:description" content={tx.hero.desc} />
-              <meta property="og:type" content="website" />
-              <meta property="og:url" content="https://wayl.dev" />
-              <html lang={lang} />
-            </Helmet>
+        <Helmet>
+          <title>{seo.title}</title>
+          <meta name="description" content={seo.description} />
+          <link rel="canonical" href={`https://wayl.dev${pageKey === "home" ? "" : `/${pageKey}`}`} />
+          <meta property="og:title" content={seo.title} />
+          <meta property="og:description" content={seo.description} />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content={`https://wayl.dev${pageKey === "home" ? "" : `/${pageKey}`}`} />
+          <meta property="og:image" content="https://wayl.dev/og-cover.png" />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta property="og:locale" content={lang} />
+          <meta property="og:site_name" content="WAYL" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={seo.title} />
+          <meta name="twitter:description" content={seo.description} />
+          <meta name="twitter:image" content="https://wayl.dev/og-cover.png" />
+          <meta name="robots" content="index, follow" />
+          <html lang={lang} />
+        </Helmet>
 
             <style>{`body{background:${t.bg};transition:background 0.4s ease}::selection{background:${t.selection}}::-webkit-scrollbar-track{background:${t.bg}}::-webkit-scrollbar-thumb{background:${t.scrollThumb}}`}</style>
             
