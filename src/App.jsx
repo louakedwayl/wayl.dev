@@ -53,9 +53,9 @@ const i18n = {
       { title: "CAMAGRU", subtitle: "Instagram-like Web Application", description: "Full-stack social platform with real-time image manipulation, authentication system, and notification engine." },
     ],
     seo: {
-      home: { title: "WAYL | Cybersecurity Engineer & Full-Stack Developer", description: "Security-focused developer building resilient systems. Specializing in offensive security and DevSecOps at École 42 Paris." },
-      portfolio: { title: "Portfolio | WAYL", description: "Selected cybersecurity and full-stack development projects by WAYL." },
-      contact: { title: "Contact | WAYL", description: "Get in touch with WAYL for cybersecurity and development inquiries." },
+      home: { title: "Wayl Louaked — Cybersecurity Engineer & Full-Stack Developer", description: "Wayl Louaked — Cybersecurity student at École 42 Paris. Pentester, DevSecOps engineer. Portfolio, projects and contact." },
+      portfolio: { title: "Portfolio | Wayl Louaked", description: "Selected cybersecurity and full-stack development projects by Wayl Louaked." },
+      contact: { title: "Contact | Wayl Louaked", description: "Get in touch with Wayl Louaked for cybersecurity and development inquiries." },
     },
     footer: "© 2026 WAYL. ALL RIGHTS RESERVED.",
   },
@@ -68,9 +68,9 @@ const i18n = {
       { title: "CAMAGRU", subtitle: "Веб-приложение в стиле Instagram", description: "Полноценная социальная платформа с обработкой изображений в реальном времени, системой аутентификации и уведомлениями." },
     ],
     seo: {
-      home: { title: "WAYL | Инженер кибербезопасности и фулстек-разработчик", description: "Разработчик, ориентированный на безопасность, создающий устойчивые системы. Специализация — наступательная безопасность и DevSecOps в École 42 Paris." },
-      portfolio: { title: "Портфолио | WAYL", description: "Избранные проекты в области кибербезопасности и фулстек-разработки от WAYL." },
-      contact: { title: "Контакт | WAYL", description: "Свяжитесь с WAYL для вопросов по кибербезопасности и разработке." },
+      home: { title: "Wayl Louaked — Инженер кибербезопасности и фулстек-разработчик", description: "Wayl Louaked — Разработчик, ориентированный на безопасность. Специализация — наступательная безопасность и DevSecOps в École 42 Paris." },
+      portfolio: { title: "Портфолио | Wayl Louaked", description: "Избранные проекты в области кибербезопасности и фулстек-разработки от Wayl Louaked." },
+      contact: { title: "Контакт | Wayl Louaked", description: "Свяжитесь с Wayl Louaked для вопросов по кибербезопасности и разработке." },
     },
     footer: "© 2026 WAYL. ВСЕ ПРАВА ЗАЩИЩЕНЫ.",
   },
@@ -83,9 +83,9 @@ const i18n = {
       { title: "CAMAGRU", subtitle: "تطبيق ويب شبيه بإنستغرام", description: "منصة اجتماعية متكاملة مع معالجة الصور في الوقت الفعلي ونظام المصادقة والإشعارات." },
     ],
     seo: {
-      home: { title: "WAYL | مهندس أمن سيبراني ومطور متكامل", description: "مطور متخصص في الأمن، يبني أنظمة مرنة. حالياً متخصص في الأمن الهجومي و DevSecOps في École 42 Paris." },
-      portfolio: { title: "الأعمال | WAYL", description: "مشاريع مختارة في الأمن السيبراني والتطوير المتكامل من WAYL." },
-      contact: { title: "اتصل | WAYL", description: "تواصل مع WAYL لاستفسارات الأمن السيبراني والتطوير." },
+      home: { title: "Wayl Louaked — مهندس أمن سيبراني ومطور متكامل", description: "Wayl Louaked — مطور متخصص في الأمن، يبني أنظمة مرنة. حالياً متخصص في الأمن الهجومي و DevSecOps في École 42 Paris." },
+      portfolio: { title: "الأعمال | Wayl Louaked", description: "مشاريع مختارة في الأمن السيبراني والتطوير المتكامل من Wayl Louaked." },
+      contact: { title: "اتصل | Wayl Louaked", description: "تواصل مع Wayl Louaked لاستفسارات الأمن السيبراني والتطوير." },
     },
     footer: "© 2026 WAYL. جميع الحقوق محفوظة.",
   },
@@ -98,9 +98,9 @@ const i18n = {
       { title: "CAMAGRU", subtitle: "类Instagram网页应用", description: "全栈社交平台，具有实时图像处理、认证系统和通知引擎。" },
     ],
     seo: {
-      home: { title: "WAYL | 网络安全工程师 & 全栈开发者", description: "专注安全的开发者，构建弹性系统。目前在巴黎42学校专攻进攻性安全和DevSecOps。" },
-      portfolio: { title: "作品集 | WAYL", description: "WAYL精选的网络安全和全栈开发项目。" },
-      contact: { title: "联系 | WAYL", description: "联系WAYL，了解网络安全和开发相关事宜。" },
+      home: { title: "Wayl Louaked — 网络安全工程师 & 全栈开发者", description: "Wayl Louaked — 专注安全的开发者，构建弹性系统。目前在巴黎42学校专攻进攻性安全和DevSecOps。" },
+      portfolio: { title: "作品集 | Wayl Louaked", description: "Wayl Louaked精选的网络安全和全栈开发项目。" },
+      contact: { title: "联系 | Wayl Louaked", description: "联系Wayl Louaked，了解网络安全和开发相关事宜。" },
     },
     footer: "© 2026 WAYL. 保留所有权利。",
   },
@@ -113,9 +113,9 @@ const i18n = {
       { title: "CAMAGRU", subtitle: "Instagram風ウェブアプリ", description: "リアルタイム画像処理、認証システム、通知エンジンを備えたフルスタックソーシャルプラットフォーム。" },
     ],
     seo: {
-      home: { title: "WAYL | サイバーセキュリティエンジニア & フルスタック開発者", description: "セキュリティに特化した開発者として、堅牢なシステムを構築。現在École 42 Parisで攻撃的セキュリティとDevSecOpsを専攻中。" },
-      portfolio: { title: "ポートフォリオ | WAYL", description: "WAYLによるサイバーセキュリティとフルスタック開発の厳選プロジェクト。" },
-      contact: { title: "連絡先 | WAYL", description: "サイバーセキュリティと開発に関するお問い合わせはWAYLまで。" },
+      home: { title: "Wayl Louaked — サイバーセキュリティエンジニア & フルスタック開発者", description: "Wayl Louaked — セキュリティに特化した開発者。現在École 42 Parisで攻撃的セキュリティとDevSecOpsを専攻中。" },
+      portfolio: { title: "ポートフォリオ | Wayl Louaked", description: "Wayl Louakedによるサイバーセキュリティとフルスタック開発の厳選プロジェクト。" },
+      contact: { title: "連絡先 | Wayl Louaked", description: "サイバーセキュリティと開発に関するお問い合わせはWayl Louakedまで。" },
     },
     footer: "© 2026 WAYL. 全著作権所有。",
   },
@@ -128,9 +128,9 @@ const i18n = {
       { title: "CAMAGRU", subtitle: "Aplicación web tipo Instagram", description: "Plataforma social full-stack con manipulación de imágenes en tiempo real, sistema de autenticación y motor de notificaciones." },
     ],
     seo: {
-      home: { title: "WAYL | Ingeniero de Ciberseguridad y Desarrollador Full-Stack", description: "Desarrollador enfocado en seguridad, construyendo sistemas resilientes. Especializado en seguridad ofensiva y DevSecOps en École 42 Paris." },
-      portfolio: { title: "Portafolio | WAYL", description: "Proyectos seleccionados de ciberseguridad y desarrollo full-stack por WAYL." },
-      contact: { title: "Contacto | WAYL", description: "Contacta con WAYL para consultas de ciberseguridad y desarrollo." },
+      home: { title: "Wayl Louaked — Ingeniero de Ciberseguridad y Desarrollador Full-Stack", description: "Wayl Louaked — Desarrollador enfocado en seguridad. Especializado en seguridad ofensiva y DevSecOps en École 42 Paris." },
+      portfolio: { title: "Portafolio | Wayl Louaked", description: "Proyectos seleccionados de ciberseguridad y desarrollo full-stack por Wayl Louaked." },
+      contact: { title: "Contacto | Wayl Louaked", description: "Contacta con Wayl Louaked para consultas de ciberseguridad y desarrollo." },
     },
     footer: "© 2026 WAYL. TODOS LOS DERECHOS RESERVADOS.",
   },
@@ -143,9 +143,9 @@ const i18n = {
       { title: "CAMAGRU", subtitle: "Applicazione web tipo Instagram", description: "Piattaforma social full-stack con manipolazione immagini in tempo reale, sistema di autenticazione e motore di notifiche." },
     ],
     seo: {
-      home: { title: "WAYL | Ingegnere Cybersecurity e Sviluppatore Full-Stack", description: "Sviluppatore focalizzato sulla sicurezza, costruisce sistemi resilienti. Specializzato in sicurezza offensiva e DevSecOps presso École 42 Paris." },
-      portfolio: { title: "Portfolio | WAYL", description: "Progetti selezionati di cybersecurity e sviluppo full-stack di WAYL." },
-      contact: { title: "Contatto | WAYL", description: "Contatta WAYL per richieste di cybersecurity e sviluppo." },
+      home: { title: "Wayl Louaked — Ingegnere Cybersecurity e Sviluppatore Full-Stack", description: "Wayl Louaked — Sviluppatore focalizzato sulla sicurezza. Specializzato in sicurezza offensiva e DevSecOps presso École 42 Paris." },
+      portfolio: { title: "Portfolio | Wayl Louaked", description: "Progetti selezionati di cybersecurity e sviluppo full-stack di Wayl Louaked." },
+      contact: { title: "Contatto | Wayl Louaked", description: "Contatta Wayl Louaked per richieste di cybersecurity e sviluppo." },
     },
     footer: "© 2026 WAYL. TUTTI I DIRITTI RISERVATI.",
   },
@@ -158,9 +158,9 @@ const i18n = {
       { title: "CAMAGRU", subtitle: "Instagram-achtige webapplicatie", description: "Full-stack sociaal platform met realtime beeldbewerking, authenticatiesysteem en notificatie-engine." },
     ],
     seo: {
-      home: { title: "WAYL | Cybersecurity Engineer & Full-Stack Developer", description: "Beveiligingsgerichte ontwikkelaar die veerkrachtige systemen bouwt. Gespecialiseerd in offensieve beveiliging en DevSecOps bij École 42 Paris." },
-      portfolio: { title: "Portfolio | WAYL", description: "Geselecteerde cybersecurity- en full-stack ontwikkelingsprojecten van WAYL." },
-      contact: { title: "Contact | WAYL", description: "Neem contact op met WAYL voor cybersecurity- en ontwikkelingsvragen." },
+      home: { title: "Wayl Louaked — Cybersecurity Engineer & Full-Stack Developer", description: "Wayl Louaked — Beveiligingsgerichte ontwikkelaar. Gespecialiseerd in offensieve beveiliging en DevSecOps bij École 42 Paris." },
+      portfolio: { title: "Portfolio | Wayl Louaked", description: "Geselecteerde cybersecurity- en full-stack ontwikkelingsprojecten van Wayl Louaked." },
+      contact: { title: "Contact | Wayl Louaked", description: "Neem contact op met Wayl Louaked voor cybersecurity- en ontwikkelingsvragen." },
     },
     footer: "© 2026 WAYL. ALLE RECHTEN VOORBEHOUDEN.",
   },
@@ -184,9 +184,6 @@ function PageTransition({ children, pageKey }) {
   useEffect(() => { setV(false); const t = requestAnimationFrame(() => requestAnimationFrame(() => setV(true))); return () => cancelAnimationFrame(t); }, [pageKey]);
   return <div style={{ opacity: v ? 1 : 0, transform: v ? "translateY(0)" : "translateY(16px)", transition: "all 0.5s cubic-bezier(0.16,1,0.3,1)" }}>{children}</div>;
 }
-
-// ... (Les composants LangDropdown, Navbar, HomePage, ProjectCard, PortfolioPage, ContactPage et Footer restent identiques à ton code fourni)
-// [Composants LangDropdown, Navbar, HomePage, ProjectCard, PortfolioPage, ContactPage, Footer ici...]
 
 function LangDropdown({ lang, onChangeLang }) {
   const t = useTheme();
@@ -262,7 +259,7 @@ function HomePage({ onNavigate }) {
     <section style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", position: "relative", overflow: "hidden", padding: "100px 24px 24px" }}>
       <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(${t.gridLine} 1px,transparent 1px),linear-gradient(90deg,${t.gridLine} 1px,transparent 1px)`, backgroundSize: "80px 80px", opacity: ld ? 1 : 0, transition: "opacity 1.5s ease" }} />
       <div style={{ width: ld ? 60 : 0, height: 1, background: t.accent, marginBottom: 40, transition: "width 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s" }} />
-      <h1 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "clamp(52px,11vw,130px)", fontWeight: 400, color: t.text, textAlign: "center", lineHeight: 0.92, letterSpacing: "-0.04em", opacity: ld ? 1 : 0, transform: ld ? "translateY(0)" : "translateY(30px)", transition: "all 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s", margin: 0 }}>WAYL</h1>
+      <h1 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "clamp(52px,11vw,130px)", fontWeight: 400, color: t.text, textAlign: "center", lineHeight: 0.92, letterSpacing: "-0.04em", opacity: ld ? 1 : 0, transform: ld ? "translateY(0)" : "translateY(30px)", transition: "all 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s", margin: 0 }}>WAYL<span style={{ display: "block", fontSize: "clamp(16px,3vw,24px)", fontFamily: "'DM Sans',Helvetica,sans-serif", letterSpacing: "0.1em", color: t.textFaint, marginTop: 12, fontWeight: 400 }}>LOUAKED</span></h1>
       <div style={{ fontFamily: "'DM Sans',Helvetica,sans-serif", fontSize: 11, letterSpacing: "0.2em", color: t.textFaint, marginTop: 32, textAlign: "center", opacity: ld ? 1 : 0, transform: ld ? "translateY(0)" : "translateY(20px)", transition: "all 0.8s cubic-bezier(0.16,1,0.3,1) 0.5s" }}>{tx.hero.subtitle}</div>
       <div style={{ marginTop: 48, maxWidth: 520, textAlign: "center", opacity: ld ? 1 : 0, transform: ld ? "translateY(0)" : "translateY(20px)", transition: "all 0.8s cubic-bezier(0.16,1,0.3,1) 0.7s" }}>
         <p style={{ fontFamily: "'DM Sans',Helvetica,sans-serif", fontSize: 14, lineHeight: 1.75, color: t.textMuted, margin: 0 }}>{tx.hero.desc}</p>
@@ -385,7 +382,7 @@ export default function App() {
   const [mode, setMode] = useState("light");
   const [lang, setLang] = useState("en");
   const t = themes[mode];
-  const tx = i18n[lang] || i18n.en; // Pour Helmet
+  const tx = i18n[lang] || i18n.en;
   
   const navigate = (p) => { 
     setPage(p); 
@@ -413,7 +410,7 @@ export default function App() {
           <meta property="og:image:width" content="1200" />
           <meta property="og:image:height" content="630" />
           <meta property="og:locale" content={lang} />
-          <meta property="og:site_name" content="WAYL" />
+          <meta property="og:site_name" content="Wayl Louaked" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={seo.title} />
           <meta name="twitter:description" content={seo.description} />
