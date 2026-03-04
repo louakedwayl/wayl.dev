@@ -37,6 +37,7 @@ const LANGS = {
   ru: { code: "ru", label: "RU", flag: "🇷🇺", dir: "ltr" },
   ar: { code: "ar", label: "AR", flag: "🇸🇦", dir: "rtl" },
   zh: { code: "zh", label: "ZH", flag: "🇨🇳", dir: "ltr" },
+  fr: { code: "fr", label: "FR", flag: "🇫🇷", dir: "ltr" },
   ja: { code: "ja", label: "JA", flag: "🇯🇵", dir: "ltr" },
   es: { code: "es", label: "ES", flag: "🇪🇸", dir: "ltr" },
   it: { code: "it", label: "IT", flag: "🇮🇹", dir: "ltr" },
@@ -48,7 +49,7 @@ const i18n = {
     nav: { home: "HOME", portfolio: "PORTFOLIO", contact: "CONTACT" },
     hero: { subtitle: "CYBERSECURITY ENGINEER & FULL-STACK DEVELOPER", desc: "Security-focused developer building resilient systems. Currently specializing in offensive security and DevSecOps at École 42 Paris.", viewWork: "VIEW WORK", contact: "CONTACT" },
     portfolio: { label: "SELECTED WORK", title: "Portfolio" },
-    contact: { label: "GET IN TOUCH", title: "Let's Work", title2: "Together", name: "YOUR NAME", email: "YOUR EMAIL", message: "YOUR MESSAGE", send: "SEND MESSAGE", infoLabel: "CONTACT INFO", socialLabel: "SOCIAL", quote: '"Building secure systems,', quote2: 'breaking insecure ones."' },
+    contact: { label: "GET IN TOUCH", title: "Let's Work", title2: "Together", name: "YOUR NAME", email: "YOUR EMAIL", message: "YOUR MESSAGE", send: "SEND MESSAGE", infoLabel: "CONTACT INFO", socialLabel: "SOCIAL", quote: '"Building secure systems,', quote2: 'breaking insecure ones."', success: "Your message has been received. Wayl will respond within 72 hours.", error: "Failed to send message." },
     projects: [
       { title: "CAMAGRU", subtitle: "Instagram-like Web Application", description: "Full-stack social platform with real-time image manipulation, authentication system, and notification engine." },
     ],
@@ -59,11 +60,26 @@ const i18n = {
     },
     footer: "© 2026 WAYL. ALL RIGHTS RESERVED.",
   },
+  fr: {
+    nav: { home: "ACCUEIL", portfolio: "PORTFOLIO", contact: "CONTACT" },
+    hero: { subtitle: "INGÉNIEUR CYBERSÉCURITÉ & DÉVELOPPEUR FULL-STACK", desc: "Développeur orienté sécurité, construisant des systèmes résilients. Actuellement spécialisé en sécurité offensive et DevSecOps à l'École 42 Paris.", viewWork: "VOIR PROJETS", contact: "CONTACT" },
+    portfolio: { label: "TRAVAUX SÉLECTIONNÉS", title: "Portfolio" },
+    contact: { label: "ME CONTACTER", title: "Travaillons", title2: "Ensemble", name: "VOTRE NOM", email: "VOTRE EMAIL", message: "VOTRE MESSAGE", send: "ENVOYER", infoLabel: "COORDONNÉES", socialLabel: "RÉSEAUX", quote: '"Construire des systèmes sécurisés,', quote2: 'briser ceux qui ne le sont pas."', success: "Votre message a bien été reçu. Wayl vous répondra sous 72h.", error: "Erreur lors de l'envoi." },
+    projects: [
+      { title: "CAMAGRU", subtitle: "Application web type Instagram", description: "Plateforme sociale full-stack avec manipulation d'images en temps réel, système d'authentification et moteur de notifications." },
+    ],
+    seo: {
+      home: { title: "Wayl Louaked — Ingénieur Cybersécurité & Développeur Full-Stack", description: "Wayl Louaked — Développeur orienté sécurité. Spécialisé en sécurité offensive et DevSecOps à l'École 42 Paris." },
+      portfolio: { title: "Portfolio | Wayl Louaked", description: "Projets sélectionnés en cybersécurité et développement full-stack par Wayl Louaked." },
+      contact: { title: "Contact | Wayl Louaked", description: "Contactez Wayl Louaked pour toute demande en cybersécurité et développement." },
+    },
+    footer: "© 2026 WAYL. TOUS DROITS RÉSERVÉS.",
+  },
   ru: {
     nav: { home: "ГЛАВНАЯ", portfolio: "ПОРТФОЛИО", contact: "КОНТАКТ" },
     hero: { subtitle: "ИНЖЕНЕР КИБЕРБЕЗОПАСНОСТИ И ФУЛСТЕК-РАЗРАБОТЧИК", desc: "Разработчик, ориентированный на безопасность, создающий устойчивые системы. Специализация — наступательная безопасность и DevSecOps в École 42 Paris.", viewWork: "РАБОТЫ", contact: "КОНТАКТ" },
     portfolio: { label: "ИЗБРАННЫЕ РАБОТЫ", title: "Портфолио" },
-    contact: { label: "СВЯЗАТЬСЯ", title: "Давайте", title2: "Работать вместе", name: "ВАШЕ ИМЯ", email: "ВАШ EMAIL", message: "ВАШЕ СООБЩЕНИЕ", send: "ОТПРАВИТЬ", infoLabel: "КОНТАКТЫ", socialLabel: "СОЦСЕТИ", quote: '"Строим защищённые системы,', quote2: 'взламываем незащищённые."' },
+    contact: { label: "СВЯЗАТЬСЯ", title: "Давайте", title2: "Работать вместе", name: "ВАШЕ ИМЯ", email: "ВАШ EMAIL", message: "ВАШЕ СООБЩЕНИЕ", send: "ОТПРАВИТЬ", infoLabel: "КОНТАКТЫ", socialLabel: "СОЦСЕТИ", quote: '"Строим защищённые системы,', quote2: 'взламываем незащищённые."', success: "Ваше сообщение получено. Wayl ответит в течение 72 часов.", error: "Ошибка отправки." },
     projects: [
       { title: "CAMAGRU", subtitle: "Веб-приложение в стиле Instagram", description: "Полноценная социальная платформа с обработкой изображений в реальном времени, системой аутентификации и уведомлениями." },
     ],
@@ -78,7 +94,7 @@ const i18n = {
     nav: { home: "الرئيسية", portfolio: "الأعمال", contact: "اتصل" },
     hero: { subtitle: "مهندس أمن سيبراني ومطور متكامل", desc: "مطور متخصص في الأمن، يبني أنظمة مرنة. حالياً متخصص في الأمن الهجومي و DevSecOps في École 42 Paris.", viewWork: "عرض الأعمال", contact: "اتصل بي" },
     portfolio: { label: "أعمال مختارة", title: "الأعمال" },
-    contact: { label: "تواصل معي", title: "لنعمل", title2: "معاً", name: "اسمك", email: "بريدك الإلكتروني", message: "رسالتك", send: "إرسال", infoLabel: "معلومات الاتصال", socialLabel: "التواصل الاجتماعي", quote: '"نبني أنظمة آمنة،', quote2: 'ونخترق غير الآمنة."' },
+    contact: { label: "تواصل معي", title: "لنعمل", title2: "معاً", name: "اسمك", email: "بريدك الإلكتروني", message: "رسالتك", send: "إرسال", infoLabel: "معلومات الاتصال", socialLabel: "التواصل الاجتماعي", quote: '"نبني أنظمة آمنة،', quote2: 'ونخترق غير الآمنة."', success: "تم استلام رسالتك. سيرد Wayl خلال 72 ساعة.", error: "فشل في إرسال الرسالة." },
     projects: [
       { title: "CAMAGRU", subtitle: "تطبيق ويب شبيه بإنستغرام", description: "منصة اجتماعية متكاملة مع معالجة الصور في الوقت الفعلي ونظام المصادقة والإشعارات." },
     ],
@@ -93,7 +109,7 @@ const i18n = {
     nav: { home: "首页", portfolio: "作品集", contact: "联系" },
     hero: { subtitle: "网络安全工程师 & 全栈开发者", desc: "专注安全的开发者，构建弹性系统。目前在巴黎42学校专攻进攻性安全和DevSecOps。", viewWork: "查看作品", contact: "联系我" },
     portfolio: { label: "精选作品", title: "作品集" },
-    contact: { label: "联系方式", title: "让我们", title2: "一起合作", name: "您的姓名", email: "您的邮箱", message: "您的留言", send: "发送消息", infoLabel: "联系信息", socialLabel: "社交媒体", quote: '"构建安全的系统，', quote2: '攻破不安全的系统。"' },
+    contact: { label: "联系方式", title: "让我们", title2: "一起合作", name: "您的姓名", email: "您的邮箱", message: "您的留言", send: "发送消息", infoLabel: "联系信息", socialLabel: "社交媒体", quote: '"构建安全的系统，', quote2: '攻破不安全的系统。"', success: "您的消息已收到。Wayl 将在72小时内回复。", error: "发送失败。" },
     projects: [
       { title: "CAMAGRU", subtitle: "类Instagram网页应用", description: "全栈社交平台，具有实时图像处理、认证系统和通知引擎。" },
     ],
@@ -108,7 +124,7 @@ const i18n = {
     nav: { home: "ホーム", portfolio: "ポートフォリオ", contact: "連絡先" },
     hero: { subtitle: "サイバーセキュリティエンジニア & フルスタック開発者", desc: "セキュリティに特化した開発者として、堅牢なシステムを構築。現在École 42 Parisで攻撃的セキュリティとDevSecOpsを専攻中。", viewWork: "作品を見る", contact: "連絡する" },
     portfolio: { label: "厳選された作品", title: "ポートフォリオ" },
-    contact: { label: "お問い合わせ", title: "一緒に", title2: "働きましょう", name: "お名前", email: "メールアドレス", message: "メッセージ", send: "送信する", infoLabel: "連絡先情報", socialLabel: "ソーシャル", quote: '"安全なシステムを構築し、', quote2: '安全でないシステムを破壊する。"' },
+    contact: { label: "お問い合わせ", title: "一緒に", title2: "働きましょう", name: "お名前", email: "メールアドレス", message: "メッセージ", send: "送信する", infoLabel: "連絡先情報", socialLabel: "ソーシャル", quote: '"安全なシステムを構築し、', quote2: '安全でないシステムを破壊する。"', success: "メッセージを受信しました。Waylが72時間以内に返信します。", error: "送信に失敗しました。" },
     projects: [
       { title: "CAMAGRU", subtitle: "Instagram風ウェブアプリ", description: "リアルタイム画像処理、認証システム、通知エンジンを備えたフルスタックソーシャルプラットフォーム。" },
     ],
@@ -123,7 +139,7 @@ const i18n = {
     nav: { home: "INICIO", portfolio: "PORTAFOLIO", contact: "CONTACTO" },
     hero: { subtitle: "INGENIERO DE CIBERSEGURIDAD Y DESARROLLADOR FULL-STACK", desc: "Desarrollador enfocado en seguridad, construyendo sistemas resilientes. Actualmente especializado en seguridad ofensiva y DevSecOps en École 42 Paris.", viewWork: "VER TRABAJOS", contact: "CONTACTO" },
     portfolio: { label: "TRABAJOS SELECCIONADOS", title: "Portafolio" },
-    contact: { label: "CONTACTAR", title: "Trabajemos", title2: "Juntos", name: "TU NOMBRE", email: "TU EMAIL", message: "TU MENSAJE", send: "ENVIAR MENSAJE", infoLabel: "INFO DE CONTACTO", socialLabel: "REDES SOCIALES", quote: '"Construyendo sistemas seguros,', quote2: 'rompiendo los inseguros."' },
+    contact: { label: "CONTACTAR", title: "Trabajemos", title2: "Juntos", name: "TU NOMBRE", email: "TU EMAIL", message: "TU MENSAJE", send: "ENVIAR MENSAJE", infoLabel: "INFO DE CONTACTO", socialLabel: "REDES SOCIALES", quote: '"Construyendo sistemas seguros,', quote2: 'rompiendo los inseguros."', success: "Su mensaje ha sido recibido. Wayl responderá en un plazo de 72 horas.", error: "Error al enviar el mensaje." },
     projects: [
       { title: "CAMAGRU", subtitle: "Aplicación web tipo Instagram", description: "Plataforma social full-stack con manipulación de imágenes en tiempo real, sistema de autenticación y motor de notificaciones." },
     ],
@@ -138,7 +154,7 @@ const i18n = {
     nav: { home: "HOME", portfolio: "PORTFOLIO", contact: "CONTATTO" },
     hero: { subtitle: "INGEGNERE CYBERSECURITY E SVILUPPATORE FULL-STACK", desc: "Sviluppatore focalizzato sulla sicurezza, costruisce sistemi resilienti. Attualmente specializzato in sicurezza offensiva et DevSecOps presso École 42 Paris.", viewWork: "VEDI LAVORI", contact: "CONTATTO" },
     portfolio: { label: "LAVORI SELEZIONATI", title: "Portfolio" },
-    contact: { label: "CONTATTAMI", title: "Lavoriamo", title2: "Insieme", name: "IL TUO NOME", email: "LA TUA EMAIL", message: "IL TUO MESSAGGIO", send: "INVIA MESSAGGIO", infoLabel: "INFO CONTATTO", socialLabel: "SOCIAL", quote: '"Costruiamo sistemi sicuri,', quote2: 'violiamo quelli insicuri."' },
+    contact: { label: "CONTATTAMI", title: "Lavoriamo", title2: "Insieme", name: "IL TUO NOME", email: "LA TUA EMAIL", message: "IL TUO MESSAGGIO", send: "INVIA MESSAGGIO", infoLabel: "INFO CONTATTO", socialLabel: "SOCIAL", quote: '"Costruiamo sistemi sicuri,', quote2: 'violiamo quelli insicuri."', success: "Il messaggio è stato ricevuto. Wayl risponderà entro 72 ore.", error: "Errore nell'invio." },
     projects: [
       { title: "CAMAGRU", subtitle: "Applicazione web tipo Instagram", description: "Piattaforma social full-stack con manipolazione immagini in tempo reale, sistema di autenticazione e motore di notifiche." },
     ],
@@ -153,7 +169,7 @@ const i18n = {
     nav: { home: "HOME", portfolio: "PORTFOLIO", contact: "CONTACT" },
     hero: { subtitle: "CYBERSECURITY ENGINEER & FULL-STACK DEVELOPER", desc: "Beveiligingsgerichte ontwikkelaar die veerkrachtige systemen bouwt. Momenteel gespecialiseerd in offensieve beveiliging en DevSecOps bij École 42 Paris.", viewWork: "BEKIJK WERK", contact: "CONTACT" },
     portfolio: { label: "GESELECTEERD WERK", title: "Portfolio" },
-    contact: { label: "NEEM CONTACT OP", title: "Laten we", title2: "Samenwerken", name: "UW NAAM", email: "UW EMAIL", message: "UW BERICHT", send: "VERSTUUR BERICHT", infoLabel: "CONTACTGEGEVENS", socialLabel: "SOCIAAL", quote: '"Veilige systemen bouwen,', quote2: 'onveilige systemen kraken."' },
+    contact: { label: "NEEM CONTACT OP", title: "Laten we", title2: "Samenwerken", name: "UW NAAM", email: "UW EMAIL", message: "UW BERICHT", send: "VERSTUUR BERICHT", infoLabel: "CONTACTGEGEVENS", socialLabel: "SOCIAAL", quote: '"Veilige systemen bouwen,', quote2: 'onveilige systemen kraken."', success: "Uw bericht is ontvangen. Wayl reageert binnen 72 uur.", error: "Verzenden mislukt." },
     projects: [
       { title: "CAMAGRU", subtitle: "Instagram-achtige webapplicatie", description: "Full-stack sociaal platform met realtime beeldbewerking, authenticatiesysteem en notificatie-engine." },
     ],
@@ -165,7 +181,6 @@ const i18n = {
     footer: "© 2026 WAYL. ALLE RECHTEN VOORBEHOUDEN.",
   },
 };
-
 
 // ─── DATA ────────────────────────────────────────────────
 const PROJECT_BASE = [
@@ -322,6 +337,7 @@ function ContactPage() {
   const tx = useT();
   const [vis, setVis] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState(null);
   const [foc, setFoc] = useState(null);
   const ref = useRef(null);
   useEffect(() => { const o = new IntersectionObserver(([e]) => e.isIntersecting && setVis(true), { threshold: 0.05 }); if (ref.current) o.observe(ref.current); return () => o.disconnect(); }, []);
@@ -340,7 +356,12 @@ function ContactPage() {
           <input type="email" value={form.email} onChange={e => setForm({...form, email: e.target.value})} onFocus={() => setFoc("email")} onBlur={() => setFoc(null)} style={inp("email")} />
           <label style={lab}>{tx.contact.message} *</label>
           <textarea value={form.message} onChange={e => setForm({...form, message: e.target.value})} onFocus={() => setFoc("message")} onBlur={() => setFoc(null)} rows={4} style={{...inp("message"), resize: "vertical", minHeight: 100}} />
-          <button onClick={async () => { if (!form.name || !form.email || !form.message) return; try { const res = await fetch("https://wayl.dev/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) }); if (res.ok) setForm({ name: "", email: "", message: "" }); } catch (e) { console.error(e); } }} style={{ marginTop: 40, fontFamily: "'DM Sans',Helvetica,sans-serif", fontSize: 11, letterSpacing: "0.15em", fontWeight: 500, color: t.btnText, background: t.btnBg, border: "none", padding: "16px 40px", cursor: "pointer", transition: "all 0.3s ease", display: "flex", alignItems: "center", gap: 10 }} onMouseEnter={e => e.target.style.background = t.btnHover} onMouseLeave={e => e.target.style.background = t.btnBg}>{tx.contact.send} <span style={{ fontSize: 16, marginTop: -1 }}>→</span></button>
+          <button onClick={async () => { if (!form.name || !form.email || !form.message) return; try { const res = await fetch("https://wayl.dev/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) }); if (res.ok) { setForm({ name: "", email: "", message: "" }); setStatus("success"); } else { setStatus("error"); } } catch (e) { console.error(e); setStatus("error"); } setTimeout(() => setStatus(null), 6000); }} style={{ marginTop: 40, fontFamily: "'DM Sans',Helvetica,sans-serif", fontSize: 11, letterSpacing: "0.15em", fontWeight: 500, color: t.btnText, background: t.btnBg, border: "none", padding: "16px 40px", cursor: "pointer", transition: "all 0.3s ease", display: "flex", alignItems: "center", gap: 10 }} onMouseEnter={e => e.target.style.background = t.btnHover} onMouseLeave={e => e.target.style.background = t.btnBg}>{tx.contact.send} <span style={{ fontSize: 16, marginTop: -1 }}>→</span></button>
+          {status && (
+        <div style={{ marginTop: 16, fontFamily: "'DM Sans',Helvetica,sans-serif", fontSize: 13, letterSpacing: "0.05em", color: status === "success" ? "#4caf50" : "#f44336", transition: "opacity 0.3s ease" }}>
+          {status === "success" ? tx.contact.success : tx.contact.error}
+        </div>
+      )}
         </div>
       </div>
       <div style={{ opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(30px)", transition: "all 0.7s cubic-bezier(0.16,1,0.3,1) 0.2s", paddingTop: 120 }}>
