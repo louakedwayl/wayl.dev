@@ -282,7 +282,6 @@ function ProjectCard({ project, projTx, index }) {
     <div ref={ref} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)} onClick={() => project.url && window.open(project.url, "_blank")} style={{ opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(40px)", transition: `all 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 0.12}s`, cursor: "pointer" }}>
       <div style={{ position: "relative", overflow: "hidden", aspectRatio: "3/2", marginBottom: 20, background: t.cardBg }}>
         <img src={project.image} alt={projTx.title} style={{ width: "100%", height: "100%", objectFit: "cover", filter: hov ? t.imgFilterHover : t.imgFilter, transform: hov ? "scale(1.05)" : "scale(1)", transition: "all 0.6s cubic-bezier(0.16,1,0.3,1)" }} />
-        <div style={{ position: "absolute", top: 14, left: 18, fontFamily: "'Instrument Serif',Georgia,serif", fontSize: 13, color: "rgba(255,255,255,0.5)" }}>0{project.id}</div>
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "40px 20px 20px", background: `linear-gradient(transparent,${t.overlay})`, opacity: hov ? 1 : 0, transform: hov ? "translateY(0)" : "translateY(10px)", transition: "all 0.4s ease" }}>
           <p style={{ fontFamily: "'DM Sans',Helvetica,sans-serif", fontSize: 13, color: "rgba(255,255,255,0.85)", lineHeight: 1.6, margin: 0 }}>{projTx.description}</p>
         </div>
