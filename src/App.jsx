@@ -358,7 +358,7 @@ function ContactPage() {
           <textarea value={form.message} onChange={e => setForm({...form, message: e.target.value})} onFocus={() => setFoc("message")} onBlur={() => setFoc(null)} rows={4} style={{...inp("message"), resize: "vertical", minHeight: 100}} />
           <button onClick={async () => { if (!form.name || !form.email || !form.message) return; try { const res = await fetch("https://wayl.dev/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) }); if (res.ok) { setForm({ name: "", email: "", message: "" }); setStatus("success"); } else { setStatus("error"); } } catch (e) { console.error(e); setStatus("error"); } setTimeout(() => setStatus(null), 6000); }} style={{ marginTop: 40, fontFamily: "'DM Sans',Helvetica,sans-serif", fontSize: 11, letterSpacing: "0.15em", fontWeight: 500, color: t.btnText, background: t.btnBg, border: "none", padding: "16px 40px", cursor: "pointer", transition: "all 0.3s ease", display: "flex", alignItems: "center", gap: 10 }} onMouseEnter={e => e.target.style.background = t.btnHover} onMouseLeave={e => e.target.style.background = t.btnBg}>{tx.contact.send} <span style={{ fontSize: 16, marginTop: -1 }}>→</span></button>
           {status && (
-        <div style={{ marginTop: 16, fontFamily: "'DM Sans',Helvetica,sans-serif", fontSize: 13, letterSpacing: "0.05em", color: status === "success" ? "#4caf50" : "#f44336", transition: "opacity 0.3s ease" }}>
+        <div style={{ marginTop: 16, fontFamily: "'DM Sans',Helvetica,sans-serif", fontSize: 13, letterSpacing: "0.05em", color: status === "success" ? t.text : "#f44336", transition: "opacity 0.3s ease" }}>
           {status === "success" ? tx.contact.success : tx.contact.error}
         </div>
       )}
