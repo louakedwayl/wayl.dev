@@ -1,6 +1,6 @@
 # wayl.dev
 
-Personal portfolio site for Wayl Louaked — Pentester & DevSecOps engineer.
+Personal portfolio site for Wayl Louaked
 
 Live: [wayl.dev](https://wayl.dev)
 
