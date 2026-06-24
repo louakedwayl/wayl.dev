@@ -35,4 +35,4 @@ app.post("/contact", async (req, res) => {
   }
 });
 
-app.listen(3001, () => console.log("✓ contact API on :3001"));
+app.listen(3001, "127.0.0.1", () => console.log("✓ contact API on 127.0.0.1:3001"));
