@@ -17,15 +17,18 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-app.post("/contact", async (req, res) => {
-  const { name, email, message } = req.body;
-  if (!name || !email || !message) return res.status(400).json({ error: "Missing fields" });
+async function handleContact(req, res) {
+  const { name, email, message } = req.body || {};
+  if (!name || !email || !message) {
+    return res.status(400).json({ error: "Missing fields" });
+  }
 
   try {
     await transporter.sendMail({
       from: process.env.SMTP_USER,
       to: "contact@wayl.dev",
       subject: `Portfolio — ${name}`,
+      replyTo: email,
       text: `From: ${name} (${email})\n\n${message}`,
     });
     res.json({ ok: true });
@@ -33,6 +36,9 @@ app.post("/contact", async (req, res) => {
     console.error(e);
     res.status(500).json({ error: "Send failed" });
   }
-});
+}
+
+app.post("/contact", handleContact);
+app.post("/api/contact", handleContact);
 
 app.listen(3001, "127.0.0.1", () => console.log("✓ contact API on 127.0.0.1:3001"));
