@@ -1,0 +1,406 @@
+/* ===========================================================================
+   Home hero — "Lithos" cursor-spotlight design.
+   Scoped, hand-written CSS (no Tailwind) so it touches nothing else on the
+   site. Only HomePage.jsx imports this file.
+   Palette: black stage, white text, warm clay accent #e8702a.
+   ======================================================================== */
+
+/* --- Stage ------------------------------------------------------------- */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: #000;
+  font-family: 'Inter', system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Layer 1 — base image with a slow Ken Burns zoom-out. */
+.hero-bg-base {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Layer 2 — reveal image, exposed only through the cursor spotlight mask
+   (mask-image is set inline because it tracks the cursor every frame). */
+.hero-reveal-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+/* Layer 2b — warm light bloom that travels with the spotlight. */
+.hero-bloom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 40;
+  width: 620px;
+  height: 620px;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: radial-gradient(circle,
+    rgba(255, 247, 237, 0.16) 0%,
+    rgba(232, 112, 42, 0.12) 38%,
+    rgba(232, 112, 42, 0) 64%);
+  mix-blend-mode: screen;
+  transition: opacity 350ms ease;
+}
+
+/* --- Navigation (fixed overlay) --------------------------------------- */
+.hero-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+}
+@media (min-width: 640px) { .hero-nav { padding: 20px; } }
+
+.hero-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero-logo svg { display: block; }
+.hero-wordmark {
+  color: #fff;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 26px;
+  line-height: 1;
+}
+
+/* Center glassy pill — desktop only. */
+.hero-pill {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+@media (min-width: 768px) { .hero-pill { display: flex; } }
+
+.hero-pill-btn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.hero-pill-btn:hover { background: rgba(255, 255, 255, 0.2); color: #fff; }
+.hero-pill-btn--active { background: rgba(255, 255, 255, 0.22); color: #fff; }
+
+.hero-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Language switcher (glass, dark-friendly). */
+.hero-lang { position: relative; }
+.hero-lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  appearance: none;
+  cursor: pointer;
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+.hero-lang-btn:hover { background: rgba(255, 255, 255, 0.22); }
+.hero-lang-chevron { transition: transform 0.25s ease; }
+.hero-lang-chevron--open { transform: rotate(180deg); }
+
+.hero-lang-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 168px;
+  padding: 6px;
+  border-radius: 14px;
+  background: rgba(16, 16, 16, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  z-index: 120;
+  animation: heroDrop 0.18s ease;
+}
+.hero-lang-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.82);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-align: left;
+  padding: 9px 12px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.hero-lang-item:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+.hero-lang-item--active { background: rgba(232, 112, 42, 0.18); color: #fff; }
+.hero-lang-flag { font-size: 16px; line-height: 1; }
+.hero-lang-check { margin-left: auto; color: #e8702a; }
+
+/* Hamburger — mobile only. */
+.hero-burger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: #fff;
+  padding: 4px;
+  cursor: pointer;
+}
+@media (min-width: 768px) { .hero-burger { display: none; } }
+
+/* Mobile dropdown menu. */
+.hero-mobile-menu {
+  position: fixed;
+  top: 60px;
+  left: 16px;
+  right: 16px;
+  z-index: 95;
+  padding: 8px;
+  border-radius: 16px;
+  background: rgba(16, 16, 16, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+  animation: heroDrop 0.18s ease;
+}
+@media (min-width: 768px) { .hero-mobile-menu { display: none; } }
+.hero-mobile-item {
+  display: block;
+  width: 100%;
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.82);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-align: left;
+  padding: 13px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.hero-mobile-item:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+.hero-mobile-item--active { color: #fff; }
+
+/* Click-catcher behind open menus. */
+.hero-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: transparent;
+}
+
+/* --- Heading ----------------------------------------------------------- */
+.hero-heading-wrap {
+  position: absolute;
+  top: 14%;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  pointer-events: none;
+}
+.hero-title {
+  margin: 0;
+  color: #fff;
+  line-height: 0.95;
+}
+.hero-title-line {
+  display: block;
+  font-weight: 400;
+  font-size: clamp(3rem, 9vw, 6rem);
+}
+.hero-line-1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  letter-spacing: -0.05em;
+}
+.hero-line-2 {
+  margin-top: -0.06em;
+  letter-spacing: -0.06em;
+}
+
+/* --- Bottom copy blocks ------------------------------------------------ */
+.hero-bl {
+  display: none;
+  position: absolute;
+  bottom: 56px;
+  left: 40px;
+  max-width: 260px;
+  z-index: 50;
+}
+@media (min-width: 640px) { .hero-bl { display: block; } }
+@media (min-width: 768px) { .hero-bl { left: 56px; } }
+.hero-bl-label {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0 0 10px;
+}
+.hero-bl-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+.hero-br {
+  position: absolute;
+  bottom: 40px;
+  left: 20px;
+  right: 20px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+@media (min-width: 640px) {
+  .hero-br {
+    bottom: 96px;
+    left: auto;
+    right: 40px;
+    max-width: 300px;
+  }
+}
+@media (min-width: 768px) { .hero-br { right: 56px; } }
+.hero-br-text {
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+@media (min-width: 640px) { .hero-br-text { font-size: 14px; } }
+
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.hero-cta {
+  appearance: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 12px 26px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.25s ease,
+    border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.hero-cta:active { transform: scale(0.96); }
+.hero-cta-primary {
+  background: #e8702a;
+  border: 1px solid #e8702a;
+  color: #fff;
+}
+.hero-cta-primary:hover {
+  background: #d2611f;
+  border-color: #d2611f;
+  transform: scale(1.03);
+  box-shadow: 0 10px 28px rgba(232, 112, 42, 0.32);
+}
+.hero-cta-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+.hero-cta-secondary:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* --- Entrance animations ---------------------------------------------- */
+@keyframes heroReveal {
+  0%   { opacity: 0; transform: translateY(28px); filter: blur(12px); }
+  100% { opacity: 1; transform: translateY(0);   filter: blur(0); }
+}
+@keyframes heroFadeUp {
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroZoom {
+  0%   { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+@keyframes heroDrop {
+  0%   { opacity: 0; transform: translateY(-6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.hero-anim {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-reveal { animation-name: heroReveal; animation-duration: 1.1s; }
+.hero-fade   { animation-name: heroFadeUp; animation-duration: 1s; }
+.hero-zoom   { animation: heroZoom 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-anim, .hero-zoom { animation: none; opacity: 1; }
+}

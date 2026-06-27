@@ -53,22 +53,27 @@ export default function App() {
 
           <style>{`body{background:${t.bg};transition:background 0.4s ease}::selection{background:${t.selection}}::-webkit-scrollbar-track{background:${t.bg}}::-webkit-scrollbar-thumb{background:${t.scrollThumb}}`}</style>
 
-            <Navbar
-               page={page}
-               onNavigate={navigate}
-               mode={mode}
-               onToggleTheme={() => setMode(m => m === "dark" ? "light" : "dark")}
-               lang={lang}
-               onChangeLang={setLang}
-             />
+            {page !== "HOME" && (
+              <Navbar
+                 page={page}
+                 onNavigate={navigate}
+                 mode={mode}
+                 onToggleTheme={() => setMode(m => m === "dark" ? "light" : "dark")}
+                 lang={lang}
+                 onChangeLang={setLang}
+               />
+            )}
 
-            <PageTransition pageKey={page + lang}>
-              {page === "HOME" && <HomePage onNavigate={navigate} />}
-              {page === "PORTFOLIO" && <PortfolioPage />}
-              {page === "CONTACT" && <ContactPage />}
-            </PageTransition>
+            {page === "HOME" ? (
+              <HomePage page={page} onNavigate={navigate} lang={lang} onChangeLang={setLang} />
+            ) : (
+              <PageTransition pageKey={page + lang}>
+                {page === "PORTFOLIO" && <PortfolioPage />}
+                {page === "CONTACT" && <ContactPage />}
+              </PageTransition>
+            )}
 
-            <Footer />
+            {page !== "HOME" && <Footer />}
           </div>
         </LangContext.Provider>
       </ThemeContext.Provider>
