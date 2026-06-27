@@ -102,13 +102,6 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
 
       {/* Navigation overlay */}
       <nav className="hero-nav">
-        <div className="hero-logo">
-          <svg width="24" height="24" viewBox="0 0 256 256" fill="#fff" aria-hidden="true">
-            <path d="M 256 256 L 128 256 L 0 128 L 128 128 Z M 256 128 L 128 128 L 0 0 L 128 0 Z" />
-          </svg>
-          <span className="hero-wordmark">Wayl</span>
-        </div>
-
         {/* Center pill — desktop */}
         <div className="hero-pill">
           {NAV.map((it) => (
@@ -215,12 +208,7 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
         </h1>
       </div>
 
-      {/* 4. Bottom-left — description (desktop) */}
-      <div className="hero-bl hero-anim hero-fade" style={{ animationDelay: "0.7s" }}>
-        <p className="hero-bl-text">{tx.hero.desc}</p>
-      </div>
-
-      {/* 5. Bottom-right — role + CTAs */}
+      {/* 4. Bottom-right — role + CTAs */}
       <div className="hero-br hero-anim hero-fade" style={{ animationDelay: "0.85s" }}>
         <p className="hero-br-text">{tx.hero.subtitle}</p>
         <div className="hero-cta-row">
