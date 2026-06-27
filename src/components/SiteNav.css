@@ -1,0 +1,190 @@
+/* ===========================================================================
+   Site navigation — shared "Lithos" glass nav overlay.
+   Center glassy pill (desktop) · language switcher + hamburger (right) ·
+   full-width mobile dropdown. Renders transparent over whatever stage sits
+   behind it, so every full-bleed section (home hero, portfolio, …) keeps the
+   exact same navigation. Scoped, hand-written CSS; only SiteNav.jsx imports it.
+   Palette: white-on-glass over a dark stage, warm clay accent #e8702a.
+   ======================================================================== */
+
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+}
+@media (min-width: 640px) { .site-nav { padding: 20px; } }
+
+/* Center glassy pill — desktop only. */
+.site-nav-pill {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+@media (min-width: 768px) { .site-nav-pill { display: flex; } }
+
+.site-nav-link {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.site-nav-link:hover { background: rgba(255, 255, 255, 0.2); color: #fff; }
+.site-nav-link--active { background: rgba(255, 255, 255, 0.22); color: #fff; }
+
+.site-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+/* Language switcher (glass, dark-friendly). */
+.site-nav-lang { position: relative; }
+.site-nav-lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  appearance: none;
+  cursor: pointer;
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+.site-nav-lang-btn:hover { background: rgba(255, 255, 255, 0.22); }
+.site-nav-chevron { transition: transform 0.25s ease; }
+.site-nav-chevron--open { transform: rotate(180deg); }
+
+.site-nav-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 168px;
+  padding: 6px;
+  border-radius: 14px;
+  background: rgba(16, 16, 16, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  z-index: 120;
+  animation: navDrop 0.18s ease;
+}
+.site-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.82);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-align: left;
+  padding: 9px 12px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.site-nav-item:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+.site-nav-item--active { background: rgba(232, 112, 42, 0.18); color: #fff; }
+.site-nav-flag { font-size: 16px; line-height: 1; }
+.site-nav-check { margin-left: auto; color: #e8702a; }
+
+/* Hamburger — mobile only. */
+.site-nav-burger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: #fff;
+  padding: 4px;
+  cursor: pointer;
+}
+@media (min-width: 768px) { .site-nav-burger { display: none; } }
+
+/* Mobile dropdown menu. */
+.site-nav-mobile {
+  position: fixed;
+  top: 60px;
+  left: 16px;
+  right: 16px;
+  z-index: 95;
+  padding: 8px;
+  border-radius: 16px;
+  background: rgba(16, 16, 16, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+  animation: navDrop 0.18s ease;
+}
+@media (min-width: 768px) { .site-nav-mobile { display: none; } }
+.site-nav-mobile-item {
+  display: block;
+  width: 100%;
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.82);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-align: left;
+  padding: 13px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.site-nav-mobile-item:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+.site-nav-mobile-item--active { color: #fff; }
+
+/* Click-catcher behind open menus. */
+.site-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: transparent;
+}
+
+@keyframes navDrop {
+  0%   { opacity: 0; transform: translateY(-6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}

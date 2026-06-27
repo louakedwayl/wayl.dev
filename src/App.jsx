@@ -24,6 +24,11 @@ export default function App() {
    const pageKey = page.toLowerCase();
   const seo = tx.seo?.[pageKey] || tx.seo?.home;
 
+  // Full-bleed "Lithos" pages own a fixed glass nav, so they skip the legacy
+  // Navbar/Footer and must render outside PageTransition (its transform would
+  // break position: fixed).
+  const immersive = page === "HOME" || page === "PORTFOLIO";
+
   return (
     <HelmetProvider>
       <ThemeContext.Provider value={t}>
@@ -53,7 +58,7 @@ export default function App() {
 
           <style>{`body{background:${t.bg};transition:background 0.4s ease}::selection{background:${t.selection}}::-webkit-scrollbar-track{background:${t.bg}}::-webkit-scrollbar-thumb{background:${t.scrollThumb}}`}</style>
 
-            {page !== "HOME" && (
+            {!immersive && (
               <Navbar
                  page={page}
                  onNavigate={navigate}
@@ -64,16 +69,19 @@ export default function App() {
                />
             )}
 
-            {page === "HOME" ? (
+            {page === "HOME" && (
               <HomePage page={page} onNavigate={navigate} lang={lang} onChangeLang={setLang} />
-            ) : (
+            )}
+            {page === "PORTFOLIO" && (
+              <PortfolioPage page={page} onNavigate={navigate} lang={lang} onChangeLang={setLang} />
+            )}
+            {!immersive && (
               <PageTransition pageKey={page + lang}>
-                {page === "PORTFOLIO" && <PortfolioPage />}
                 {page === "CONTACT" && <ContactPage />}
               </PageTransition>
             )}
 
-            {page !== "HOME" && <Footer />}
+            {!immersive && <Footer />}
           </div>
         </LangContext.Provider>
       </ThemeContext.Provider>

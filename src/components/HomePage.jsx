@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { LANGS } from "../context/lang";
 import { useT } from "../hooks/useT";
+import SiteNav from "./SiteNav";
 import "./HomeHero.css";
 
 /* Local hero artwork (downloaded from the design's CDN into /public). */
@@ -64,25 +64,6 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
     };
   }, []);
 
-  // --- Navigation + language menu state ----------------------------------
-  const [langOpen, setLangOpen] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const onKey = (e) => { if (e.key === "Escape") { setLangOpen(false); setMenuOpen(false); } };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  const NAV = [
-    { key: "home", page: "HOME" },
-    { key: "portfolio", page: "PORTFOLIO" },
-    { key: "contact", page: "CONTACT" },
-  ];
-  const go = (p) => { setMenuOpen(false); onNavigate(p); };
-  const pickLang = (code) => { setLangOpen(false); onChangeLang(code); };
-  const cur = LANGS[lang] || LANGS.en;
-
   return (
     <section className="hero">
       {/* 1. Base image (slow Ken Burns zoom-out) */}
@@ -100,101 +81,8 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
         }}
       />
 
-      {/* Navigation overlay */}
-      <nav className="hero-nav">
-        {/* Center pill — desktop */}
-        <div className="hero-pill">
-          {NAV.map((it) => (
-            <button
-              key={it.key}
-              className={"hero-pill-btn" + (page === it.page ? " hero-pill-btn--active" : "")}
-              onClick={() => go(it.page)}
-            >
-              {tx.nav[it.key]}
-            </button>
-          ))}
-        </div>
-
-        {/* Right — language + mobile burger */}
-        <div className="hero-nav-right">
-          <div className="hero-lang">
-            <button
-              className="hero-lang-btn"
-              onClick={() => { setLangOpen((o) => !o); setMenuOpen(false); }}
-              aria-haspopup="true"
-              aria-expanded={langOpen}
-            >
-              <span className="hero-lang-flag">{cur.flag}</span>
-              <span>{cur.label}</span>
-              <svg className={"hero-lang-chevron" + (langOpen ? " hero-lang-chevron--open" : "")}
-                   width="12" height="12" viewBox="0 0 24 24" fill="none"
-                   stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                <path d="M6 9l6 6 6-6" />
-              </svg>
-            </button>
-            {langOpen && (
-              <div className="hero-lang-menu" role="menu">
-                {Object.values(LANGS).map((l) => (
-                  <button
-                    key={l.code}
-                    className={"hero-lang-item" + (l.code === lang ? " hero-lang-item--active" : "")}
-                    onClick={() => pickLang(l.code)}
-                    role="menuitem"
-                  >
-                    <span className="hero-lang-flag">{l.flag}</span>
-                    <span>{l.label}</span>
-                    {l.code === lang && (
-                      <svg className="hero-lang-check" width="14" height="14" viewBox="0 0 24 24"
-                           fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true">
-                        <path d="M5 13l4 4L19 7" />
-                      </svg>
-                    )}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <button
-            className="hero-burger"
-            onClick={() => { setMenuOpen((o) => !o); setLangOpen(false); }}
-            aria-label="Menu"
-            aria-expanded={menuOpen}
-          >
-            {menuOpen ? (
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                   strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-                <path d="M6 6l12 12M18 6L6 18" />
-              </svg>
-            ) : (
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                   strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-                <path d="M3 6h18M3 12h18M3 18h18" />
-              </svg>
-            )}
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile dropdown */}
-      {menuOpen && (
-        <div className="hero-mobile-menu">
-          {NAV.map((it) => (
-            <button
-              key={it.key}
-              className={"hero-mobile-item" + (page === it.page ? " hero-mobile-item--active" : "")}
-              onClick={() => go(it.page)}
-            >
-              {tx.nav[it.key]}
-            </button>
-          ))}
-        </div>
-      )}
-
-      {/* Click-catcher to dismiss open menus */}
-      {(langOpen || menuOpen) && (
-        <div className="hero-backdrop" onClick={() => { setLangOpen(false); setMenuOpen(false); }} />
-      )}
+      {/* Shared glass navigation overlay */}
+      <SiteNav page={page} onNavigate={onNavigate} lang={lang} onChangeLang={onChangeLang} />
 
       {/* 3. Heading — name */}
       <div className="hero-heading-wrap">
@@ -212,10 +100,10 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
       <div className="hero-br hero-anim hero-fade" style={{ animationDelay: "0.85s" }}>
         <p className="hero-br-text">{tx.hero.subtitle}</p>
         <div className="hero-cta-row">
-          <button className="hero-cta hero-cta-primary" onClick={() => go("PORTFOLIO")}>
+          <button className="hero-cta hero-cta-primary" onClick={() => onNavigate("PORTFOLIO")}>
             {tx.hero.viewWork}
           </button>
-          <button className="hero-cta hero-cta-secondary" onClick={() => go("CONTACT")}>
+          <button className="hero-cta hero-cta-secondary" onClick={() => onNavigate("CONTACT")}>
             {tx.hero.contact}
           </button>
         </div>

@@ -1,24 +1,45 @@
-import { useState, useEffect, useRef } from "react";
-import { useTheme } from "../context/theme";
 import { useT } from "../hooks/useT";
 import { PROJECT_BASE } from "../data/projects";
+import SiteNav from "./SiteNav";
 import ProjectCard from "./ProjectCard";
+import "./PortfolioPage.css";
 
-export default function PortfolioPage() {
-  const t = useTheme();
+/* Portfolio — full-bleed "Lithos" gallery, styled to match the home hero.
+   Rendered outside PageTransition (it owns the fixed SiteNav). */
+export default function PortfolioPage({ page, onNavigate, lang, onChangeLang }) {
   const tx = useT();
-  const [vis, setVis] = useState(false);
-  const ref = useRef(null);
-  useEffect(() => { const o = new IntersectionObserver(([e]) => e.isIntersecting && setVis(true), { threshold: 0.02 }); if (ref.current) o.observe(ref.current); return () => o.disconnect(); }, []);
+
   return (
-    <section ref={ref} style={{ minHeight: "100vh", padding: "120px clamp(24px,5vw,80px) 80px", maxWidth: 1200, margin: "0 auto" }}>
-      <div style={{ marginBottom: 80, opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(20px)", transition: "all 0.7s cubic-bezier(0.16,1,0.3,1)" }}>
-        <div style={{ fontFamily: "'DM Sans',Helvetica,sans-serif", fontSize: 10, letterSpacing: "0.3em", color: t.textFaint, marginBottom: 16 }}>{tx.portfolio.label}</div>
-        <h2 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "clamp(36px,6vw,64px)", fontWeight: 400, color: t.text, margin: 0, letterSpacing: "-0.02em" }}>{tx.portfolio.title}</h2>
-        <div style={{ width: vis ? 40 : 0, height: 1, background: t.accent, marginTop: 24, transition: "width 0.6s cubic-bezier(0.16,1,0.3,1) 0.3s" }} />
-      </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(280px,350px))", gap: "48px 32px" }}>
-        {PROJECT_BASE.map((p, i) => <ProjectCard key={p.id} project={p} projTx={tx.projects[i]} index={i} />)}
+    <section className="pf">
+      <div className="pf-bloom" aria-hidden="true" />
+
+      <SiteNav page={page} onNavigate={onNavigate} lang={lang} onChangeLang={onChangeLang} />
+
+      <div className="pf-inner">
+        <header className="pf-head">
+          <p className="pf-eyebrow pf-anim pf-fade" style={{ animationDelay: "0.1s" }}>
+            {tx.portfolio.label}
+          </p>
+          <h1 className="pf-title pf-anim pf-reveal" style={{ animationDelay: "0.2s" }}>
+            {tx.portfolio.title}
+          </h1>
+          <p className="pf-intro pf-anim pf-fade" style={{ animationDelay: "0.34s" }}>
+            {tx.portfolio.intro}
+          </p>
+          <span className="pf-rule pf-anim pf-grow" style={{ animationDelay: "0.46s" }} />
+        </header>
+
+        <div className="pf-grid">
+          {PROJECT_BASE.map((p, i) => (
+            <ProjectCard
+              key={p.id}
+              project={p}
+              projTx={tx.projects[i]}
+              cta={tx.portfolio.viewProject}
+              index={i}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
