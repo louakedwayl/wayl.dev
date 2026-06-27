@@ -5,7 +5,7 @@ import ProjectCard from "./ProjectCard";
 import "./PortfolioPage.css";
 
 /* Portfolio — full-bleed "Lithos" gallery, styled to match the home hero.
-   Rendered outside PageTransition (it owns the fixed SiteNav). */
+   A full-bleed section that owns the shared fixed glass nav (SiteNav). */
 export default function PortfolioPage({ page, onNavigate, lang, onChangeLang }) {
   const tx = useT();
 
