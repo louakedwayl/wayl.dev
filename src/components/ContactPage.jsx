@@ -118,8 +118,6 @@ export default function ContactPage({ page, onNavigate, lang, onChangeLang }) {
               ))}
             </div>
           </div>
-
-          <p className="ct-quote">{tx.contact.quote}<br />{tx.contact.quote2}</p>
         </aside>
       </div>
 
