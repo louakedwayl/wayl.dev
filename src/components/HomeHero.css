@@ -16,11 +16,6 @@
   background: #000;
   font-family: 'Inter', system-ui, sans-serif;
   letter-spacing: -0.02em;
-  /* Let the spotlight own touch gestures: without this the browser claims a
-     finger-drag as a scroll/overscroll, fires touchcancel and stops sending
-     touchmove — so dragging the spotlight would die after the first touch. */
-  touch-action: none;
-  overscroll-behavior: none;
 }
 
 /* Layer 1 — base image with a slow Ken Burns zoom-out. */
