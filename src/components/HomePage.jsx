@@ -58,24 +58,28 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
     };
 
     if (coarse) {
-      // Centre on the rock and animate autonomously — no input listeners.
+      // Start toward the top-right of the rock and animate autonomously.
       window.addEventListener("resize", onResize);
       primed = true;
-      smooth.x = mouse.x = vp.w / 2;
-      smooth.y = mouse.y = vp.h * 0.48;
+      smooth.x = mouse.x = vp.w * 0.70;
+      smooth.y = mouse.y = vp.h * 0.46;
     } else {
       window.addEventListener("mousemove", onMouse);
     }
 
     let raf;
+    let t0;
     let lastX = NaN;
     let lastY = NaN;
     const loop = (t) => {
-      // Slow, non-repeating wander across the rock (touch devices only).
-      // ~45s and ~29s periods — a calm, drifting spotlight, no interaction.
+      // Slow, non-repeating wander that starts toward the top-right and stays
+      // over the rock. Mobile crops the art so the top is empty sky — keep the
+      // spotlight in the lower-middle band. ~45s / ~29s periods.
       if (coarse) {
-        mouse.x = vp.w * (0.5 + 0.28 * Math.sin(t * 0.00014));
-        mouse.y = vp.h * (0.48 + 0.22 * Math.sin(t * 0.00022 + 1.1));
+        if (t0 === undefined) t0 = t;
+        const e = t - t0;
+        mouse.x = vp.w * (0.5 + 0.20 * Math.cos(e * 0.00014));
+        mouse.y = vp.h * (0.58 - 0.12 * Math.cos(e * 0.00022));
       }
       smooth.x += (mouse.x - smooth.x) * EASE;
       smooth.y += (mouse.y - smooth.y) * EASE;
