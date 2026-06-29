@@ -51,6 +51,19 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
     const onResize = () => { vp.w = window.innerWidth; vp.h = window.innerHeight; };
     window.addEventListener("resize", onResize);
 
+    // Home is a single screen: lock document scroll so a finger-drag drives the
+    // spotlight instead of nudging the page. The 100vh app wrapper is taller
+    // than the 100dvh hero on mobile, which otherwise leaves a scrollable strip.
+    const docEl = document.documentElement;
+    const prev = {
+      htmlOverflow: docEl.style.overflow,
+      bodyOverflow: document.body.style.overflow,
+      overscroll: document.body.style.overscrollBehavior,
+    };
+    docEl.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    document.body.style.overscrollBehavior = "none";
+
     const setTarget = (x, y) => {
       mouse.current.x = x;
       mouse.current.y = y;
@@ -63,17 +76,26 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
     };
 
     const onMouse = (e) => setTarget(e.clientX, e.clientY);
-    const onTouch = (e) => {
+    const onTouchStart = (e) => {
       const t = e.touches[0];
       if (!t) return;
       touching.current = true;
       setTarget(t.clientX, t.clientY);
     };
+    const onTouchMove = (e) => {
+      const t = e.touches[0];
+      if (!t) return;
+      touching.current = true;
+      // Non-passive so we can cancel the browser's scroll / rubber-band and
+      // keep the finger driving the spotlight for the whole drag.
+      if (e.cancelable) e.preventDefault();
+      setTarget(t.clientX, t.clientY);
+    };
     const onTouchEnd = () => { touching.current = false; };
 
     window.addEventListener("mousemove", onMouse);
-    window.addEventListener("touchstart", onTouch, { passive: true });
-    window.addEventListener("touchmove", onTouch, { passive: true });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
     window.addEventListener("touchend", onTouchEnd, { passive: true });
     window.addEventListener("touchcancel", onTouchEnd, { passive: true });
 
@@ -110,10 +132,13 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
     return () => {
       window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMouse);
-      window.removeEventListener("touchstart", onTouch);
-      window.removeEventListener("touchmove", onTouch);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("touchend", onTouchEnd);
       window.removeEventListener("touchcancel", onTouchEnd);
+      docEl.style.overflow = prev.htmlOverflow;
+      document.body.style.overflow = prev.bodyOverflow;
+      document.body.style.overscrollBehavior = prev.overscroll;
       if (rafRef.current !== undefined) cancelAnimationFrame(rafRef.current);
     };
   }, []);
