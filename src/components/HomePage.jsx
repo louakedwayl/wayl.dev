@@ -61,8 +61,8 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
       // Start toward the top-right of the rock and animate autonomously.
       window.addEventListener("resize", onResize);
       primed = true;
-      smooth.x = mouse.x = vp.w * 0.70;
-      smooth.y = mouse.y = vp.h * 0.46;
+      smooth.x = mouse.x = vp.w * 0.78;
+      smooth.y = mouse.y = vp.h * 0.40;
     } else {
       window.addEventListener("mousemove", onMouse);
     }
@@ -78,8 +78,8 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
       if (coarse) {
         if (t0 === undefined) t0 = t;
         const e = t - t0;
-        mouse.x = vp.w * (0.5 + 0.20 * Math.cos(e * 0.00014));
-        mouse.y = vp.h * (0.58 - 0.12 * Math.cos(e * 0.00022));
+        mouse.x = vp.w * (0.52 + 0.26 * Math.cos(e * 0.00014));
+        mouse.y = vp.h * (0.52 - 0.12 * Math.cos(e * 0.00022));
       }
       smooth.x += (mouse.x - smooth.x) * EASE;
       smooth.y += (mouse.y - smooth.y) * EASE;
