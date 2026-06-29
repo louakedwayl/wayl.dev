@@ -30,36 +30,90 @@ function RevealLayer({ image, x, y }) {
 export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
   const tx = useT();
 
-  // --- Cursor spotlight tracking (eased trail) ---------------------------
+  // --- Spotlight tracking (eased trail) ----------------------------------
+  // Desktop follows the mouse. Touch devices have no hover, so the spotlight
+  // follows the finger while dragging and gently drifts on its own otherwise
+  // — the reveal stays alive without a cursor.
   const mouse = useRef({ x: -999, y: -999 });
   const smooth = useRef({ x: -999, y: -999 });
   const primed = useRef(false);
+  const touching = useRef(false);
   const rafRef = useRef();
+  const lastCommit = useRef({ x: -9999, y: -9999 });
   const [cursor, setCursor] = useState({ x: -999, y: -999 });
 
   useEffect(() => {
-    const handleMove = (e) => {
-      mouse.current.x = e.clientX;
-      mouse.current.y = e.clientY;
+    const coarse = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const autoDrift = coarse && !reduce; // ambient motion only on touch screens
+
+    const vp = { w: window.innerWidth, h: window.innerHeight };
+    const onResize = () => { vp.w = window.innerWidth; vp.h = window.innerHeight; };
+    window.addEventListener("resize", onResize);
+
+    const setTarget = (x, y) => {
+      mouse.current.x = x;
+      mouse.current.y = y;
       if (!primed.current) {
         // Snap straight to the pointer the first time it appears.
         primed.current = true;
-        smooth.current.x = e.clientX;
-        smooth.current.y = e.clientY;
+        smooth.current.x = x;
+        smooth.current.y = y;
       }
     };
-    window.addEventListener("mousemove", handleMove);
 
-    const loop = () => {
+    const onMouse = (e) => setTarget(e.clientX, e.clientY);
+    const onTouch = (e) => {
+      const t = e.touches[0];
+      if (!t) return;
+      touching.current = true;
+      setTarget(t.clientX, t.clientY);
+    };
+    const onTouchEnd = () => { touching.current = false; };
+
+    window.addEventListener("mousemove", onMouse);
+    window.addEventListener("touchstart", onTouch, { passive: true });
+    window.addEventListener("touchmove", onTouch, { passive: true });
+    window.addEventListener("touchend", onTouchEnd, { passive: true });
+    window.addEventListener("touchcancel", onTouchEnd, { passive: true });
+
+    // On touch screens, show the reveal immediately (centred) so the effect
+    // is visible on load instead of waiting for a gesture.
+    if (autoDrift) {
+      primed.current = true;
+      smooth.current.x = mouse.current.x = vp.w / 2;
+      smooth.current.y = mouse.current.y = vp.h * 0.46;
+    }
+
+    const loop = (t) => {
+      // Ambient drift target when nobody is actively touching — a slow,
+      // non-repeating wander across the focal area of the artwork.
+      if (autoDrift && !touching.current) {
+        mouse.current.x = vp.w * (0.5 + 0.27 * Math.sin(t * 0.00037));
+        mouse.current.y = vp.h * (0.46 + 0.2 * Math.sin(t * 0.00059 + 1.3));
+      }
       smooth.current.x += (mouse.current.x - smooth.current.x) * EASE;
       smooth.current.y += (mouse.current.y - smooth.current.y) * EASE;
-      setCursor({ x: smooth.current.x, y: smooth.current.y });
+
+      // Skip the React commit when nothing moved (idle desktop = no re-render).
+      const nx = Math.round(smooth.current.x);
+      const ny = Math.round(smooth.current.y);
+      if (nx !== lastCommit.current.x || ny !== lastCommit.current.y) {
+        lastCommit.current.x = nx;
+        lastCommit.current.y = ny;
+        setCursor({ x: smooth.current.x, y: smooth.current.y });
+      }
       rafRef.current = requestAnimationFrame(loop);
     };
     rafRef.current = requestAnimationFrame(loop);
 
     return () => {
-      window.removeEventListener("mousemove", handleMove);
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("mousemove", onMouse);
+      window.removeEventListener("touchstart", onTouch);
+      window.removeEventListener("touchmove", onTouch);
+      window.removeEventListener("touchend", onTouchEnd);
+      window.removeEventListener("touchcancel", onTouchEnd);
       if (rafRef.current !== undefined) cancelAnimationFrame(rafRef.current);
     };
   }, []);
