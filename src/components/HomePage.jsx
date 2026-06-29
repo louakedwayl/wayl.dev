@@ -28,36 +28,55 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
   const bloomRef = useRef(null);
 
   useEffect(() => {
-    // The spotlight is a desktop (mouse) interaction. Touch / coarse-pointer
-    // devices have no hover, so we skip it entirely there — the hero simply
-    // shows the static base image, with no listeners or animation loop.
-    if (window.matchMedia("(hover: none), (pointer: coarse)").matches) return;
-
     const reveal = revealRef.current;
     const bloom = bloomRef.current;
+
+    const coarse = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Desktop follows the mouse. Touch / coarse-pointer devices get a slow,
+    // NON-interactive spotlight that drifts across the rock on its own — it
+    // ignores touch entirely. Reduced-motion → no drift, just the static image.
+    if (coarse && reduce) return;
+
+    const vp = { w: window.innerWidth, h: window.innerHeight };
+    const onResize = () => { vp.w = window.innerWidth; vp.h = window.innerHeight; };
 
     const mouse = { x: -999, y: -999 };
     const smooth = { x: -999, y: -999 };
     let primed = false;
 
-    const setTarget = (x, y) => {
-      mouse.x = x;
-      mouse.y = y;
+    const onMouse = (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
       if (!primed) {
         // Snap straight to the pointer the first time it appears.
         primed = true;
-        smooth.x = x;
-        smooth.y = y;
+        smooth.x = e.clientX;
+        smooth.y = e.clientY;
       }
     };
 
-    const onMouse = (e) => setTarget(e.clientX, e.clientY);
-    window.addEventListener("mousemove", onMouse);
+    if (coarse) {
+      // Centre on the rock and animate autonomously — no input listeners.
+      window.addEventListener("resize", onResize);
+      primed = true;
+      smooth.x = mouse.x = vp.w / 2;
+      smooth.y = mouse.y = vp.h * 0.48;
+    } else {
+      window.addEventListener("mousemove", onMouse);
+    }
 
     let raf;
     let lastX = NaN;
     let lastY = NaN;
-    const loop = () => {
+    const loop = (t) => {
+      // Slow, non-repeating wander across the rock (touch devices only).
+      // ~45s and ~29s periods — a calm, drifting spotlight, no interaction.
+      if (coarse) {
+        mouse.x = vp.w * (0.5 + 0.28 * Math.sin(t * 0.00014));
+        mouse.y = vp.h * (0.48 + 0.22 * Math.sin(t * 0.00022 + 1.1));
+      }
       smooth.x += (mouse.x - smooth.x) * EASE;
       smooth.y += (mouse.y - smooth.y) * EASE;
 
@@ -82,6 +101,7 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
     raf = requestAnimationFrame(loop);
 
     return () => {
+      window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMouse);
       if (raf) cancelAnimationFrame(raf);
     };
