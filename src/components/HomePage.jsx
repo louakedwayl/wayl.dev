@@ -126,6 +126,28 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
     };
   }, []);
 
+  // Mobile: home is a single screen — lock document scroll so the page can't be
+  // nudged (the 100vh app wrapper is taller than the 100dvh hero). Restored on
+  // unmount so Portfolio / Contact keep scrolling. Desktop is left alone so
+  // zoomed content can still be scrolled into view.
+  useEffect(() => {
+    if (!window.matchMedia("(hover: none), (pointer: coarse)").matches) return;
+    const docEl = document.documentElement;
+    const prev = {
+      html: docEl.style.overflow,
+      body: document.body.style.overflow,
+      overscroll: document.body.style.overscrollBehavior,
+    };
+    docEl.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    document.body.style.overscrollBehavior = "none";
+    return () => {
+      docEl.style.overflow = prev.html;
+      document.body.style.overflow = prev.body;
+      document.body.style.overscrollBehavior = prev.overscroll;
+    };
+  }, []);
+
   return (
     <section className="hero">
       {/* 1. Base image (slow Ken Burns zoom-out) */}
