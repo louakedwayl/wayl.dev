@@ -11,8 +11,6 @@ export default function PortfolioPage({ page, onNavigate, lang, onChangeLang }) 
 
   return (
     <section className="pf">
-      <div className="pf-bloom" aria-hidden="true" />
-
       <SiteNav page={page} onNavigate={onNavigate} lang={lang} onChangeLang={onChangeLang} />
 
       <div className="pf-inner">

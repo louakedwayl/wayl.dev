@@ -49,8 +49,6 @@ export default function ContactPage({ page, onNavigate, lang, onChangeLang }) {
 
   return (
     <section className="ct">
-      <div className="ct-bloom" aria-hidden="true" />
-
       <SiteNav page={page} onNavigate={onNavigate} lang={lang} onChangeLang={onChangeLang} />
 
       <div className="ct-inner">

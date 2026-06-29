@@ -15,23 +15,6 @@
   letter-spacing: -0.02em;
 }
 
-/* Soft warm bloom behind the heading — a static echo of the hero spotlight. */
-.pf-bloom {
-  position: absolute;
-  top: -280px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 900px;
-  max-width: 130vw;
-  height: 720px;
-  pointer-events: none;
-  background: radial-gradient(circle,
-    rgba(255, 247, 237, 0.10) 0%,
-    rgba(232, 112, 42, 0.10) 36%,
-    rgba(232, 112, 42, 0) 66%);
-  mix-blend-mode: screen;
-}
-
 .pf-inner {
   position: relative;
   z-index: 2;

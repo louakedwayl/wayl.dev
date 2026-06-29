@@ -15,23 +15,6 @@
   letter-spacing: -0.02em;
 }
 
-/* Soft warm bloom — static echo of the hero spotlight. */
-.ct-bloom {
-  position: absolute;
-  top: -300px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 960px;
-  max-width: 140vw;
-  height: 760px;
-  pointer-events: none;
-  background: radial-gradient(circle,
-    rgba(255, 247, 237, 0.10) 0%,
-    rgba(232, 112, 42, 0.10) 36%,
-    rgba(232, 112, 42, 0) 66%);
-  mix-blend-mode: screen;
-}
-
 .ct-inner {
   position: relative;
   z-index: 2;
