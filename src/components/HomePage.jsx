@@ -12,8 +12,8 @@ const EASE = 0.18;       // how quickly the spotlight catches up to the target (
 
 /* Soft radial mask that exposes the reveal image only inside a circle centred
    on (x, y), fading out at the edges. */
-const maskFor = (x, y) =>
-  `radial-gradient(circle ${SPOTLIGHT_R}px at ${x}px ${y}px,` +
+const maskFor = (x, y, r = SPOTLIGHT_R) =>
+  `radial-gradient(circle ${r}px at ${x}px ${y}px,` +
   " rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.75) 60%," +
   " rgba(0,0,0,0.4) 75%, rgba(0,0,0,0.12) 88%, rgba(0,0,0,0) 100%)";
 
@@ -30,22 +30,59 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
   useEffect(() => {
     const reveal = revealRef.current;
     const bloom = bloomRef.current;
+    if (!reveal) return;
 
     const coarse = window.matchMedia("(hover: none), (pointer: coarse)").matches;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // Desktop follows the mouse. Touch / coarse-pointer devices get a slow,
-    // NON-interactive spotlight that drifts across the rock on its own — it
-    // ignores touch entirely. Reduced-motion → no drift, just the static image.
-    if (coarse && reduce) return;
+    // ---- Mobile / touch: a slow, non-interactive intro that grows the moss
+    //      reveal from the top-right until it covers the whole rock, then
+    //      settles on the fully-mossed image. No input. ----
+    if (coarse) {
+      const showAll = () => {
+        reveal.style.maskImage = "none";
+        reveal.style.webkitMaskImage = "none";
+      };
+      if (reduce) { showAll(); return; } // accessible: full moss, no animation
 
-    const vp = { w: window.innerWidth, h: window.innerHeight };
-    const onResize = () => { vp.w = window.innerWidth; vp.h = window.innerHeight; };
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const DURATION = 24000;             // ms for the moss to spread over everything
+      const R0 = 150;                     // seed radius (the first top-right patch)
+      const RMAX = Math.hypot(w, h) * 2.4;
+      const x0 = w * 0.78, y0 = h * 0.40; // start: top-right of the rock
+      const x1 = w * 0.50, y1 = h * 0.55; // drift toward the centre as it grows
+      const ease = (p) => (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2);
+      // The gradient's opaque core reaches to 40% of r — once that covers every
+      // corner, the whole rock is mossed over.
+      const covers = (cx, cy, r) =>
+        0.4 * r >= Math.max(
+          Math.hypot(cx, cy), Math.hypot(w - cx, cy),
+          Math.hypot(cx, h - cy), Math.hypot(w - cx, h - cy),
+        );
 
+      let raf;
+      let t0;
+      const grow = (t) => {
+        if (t0 === undefined) t0 = t;
+        const k = ease(Math.min((t - t0) / DURATION, 1));
+        const cx = x0 + (x1 - x0) * k;
+        const cy = y0 + (y1 - y0) * k;
+        const r = R0 + (RMAX - R0) * k;
+        const m = maskFor(cx, cy, r);
+        reveal.style.webkitMaskImage = m;
+        reveal.style.maskImage = m;
+        if (k >= 1 || covers(cx, cy, r)) { showAll(); return; } // fully mossed → stop
+        raf = requestAnimationFrame(grow);
+      };
+      raf = requestAnimationFrame(grow);
+      return () => { if (raf) cancelAnimationFrame(raf); };
+    }
+
+    // ---- Desktop: cursor-driven spotlight ----
     const mouse = { x: -999, y: -999 };
     const smooth = { x: -999, y: -999 };
     let primed = false;
-
     const onMouse = (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
@@ -56,31 +93,12 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
         smooth.y = e.clientY;
       }
     };
-
-    if (coarse) {
-      // Start toward the top-right of the rock and animate autonomously.
-      window.addEventListener("resize", onResize);
-      primed = true;
-      smooth.x = mouse.x = vp.w * 0.78;
-      smooth.y = mouse.y = vp.h * 0.40;
-    } else {
-      window.addEventListener("mousemove", onMouse);
-    }
+    window.addEventListener("mousemove", onMouse);
 
     let raf;
-    let t0;
     let lastX = NaN;
     let lastY = NaN;
-    const loop = (t) => {
-      // Slow, non-repeating wander that starts toward the top-right and stays
-      // over the rock. Mobile crops the art so the top is empty sky — keep the
-      // spotlight in the lower-middle band. ~45s / ~29s periods.
-      if (coarse) {
-        if (t0 === undefined) t0 = t;
-        const e = t - t0;
-        mouse.x = vp.w * (0.52 + 0.26 * Math.cos(e * 0.00014));
-        mouse.y = vp.h * (0.52 - 0.12 * Math.cos(e * 0.00022));
-      }
+    const loop = () => {
       smooth.x += (mouse.x - smooth.x) * EASE;
       smooth.y += (mouse.y - smooth.y) * EASE;
 
@@ -90,11 +108,9 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
       if (nx !== lastX || ny !== lastY) {
         lastX = nx;
         lastY = ny;
-        if (reveal) {
-          const m = maskFor(smooth.x, smooth.y);
-          reveal.style.webkitMaskImage = m;
-          reveal.style.maskImage = m;
-        }
+        const m = maskFor(smooth.x, smooth.y);
+        reveal.style.webkitMaskImage = m;
+        reveal.style.maskImage = m;
         if (bloom) {
           bloom.style.transform = `translate(${smooth.x - 310}px, ${smooth.y - 310}px)`;
           bloom.style.opacity = primed && smooth.x > -100 ? "1" : "0";
@@ -105,7 +121,6 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
     raf = requestAnimationFrame(loop);
 
     return () => {
-      window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMouse);
       if (raf) cancelAnimationFrame(raf);
     };
