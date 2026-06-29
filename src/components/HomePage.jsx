@@ -23,42 +23,22 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
   const tx = useT();
 
   // The spotlight is animated by writing these layers' styles directly every
-  // frame (no React re-render per frame — smoother, and kinder to mobile GPUs).
+  // frame (no React re-render per frame).
   const revealRef = useRef(null);
   const bloomRef = useRef(null);
 
   useEffect(() => {
+    // The spotlight is a desktop (mouse) interaction. Touch / coarse-pointer
+    // devices have no hover, so we skip it entirely there — the hero simply
+    // shows the static base image, with no listeners or animation loop.
+    if (window.matchMedia("(hover: none), (pointer: coarse)").matches) return;
+
     const reveal = revealRef.current;
     const bloom = bloomRef.current;
-
-    // Touch / coarse-pointer devices have no hover: the spotlight follows the
-    // finger while dragging and gently drifts on its own otherwise, so the
-    // reveal stays alive without a cursor.
-    const coarse = window.matchMedia("(hover: none), (pointer: coarse)").matches;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const autoDrift = coarse && !reduce;
-
-    const vp = { w: window.innerWidth, h: window.innerHeight };
-    const onResize = () => { vp.w = window.innerWidth; vp.h = window.innerHeight; };
-    window.addEventListener("resize", onResize);
-
-    // Home is a single screen: lock document scroll so a finger-drag drives the
-    // spotlight instead of nudging the page. The 100vh app wrapper is taller
-    // than the 100dvh hero on mobile, which otherwise leaves a scrollable strip.
-    const docEl = document.documentElement;
-    const prevStyle = {
-      html: docEl.style.overflow,
-      body: document.body.style.overflow,
-      overscroll: document.body.style.overscrollBehavior,
-    };
-    docEl.style.overflow = "hidden";
-    document.body.style.overflow = "hidden";
-    document.body.style.overscrollBehavior = "none";
 
     const mouse = { x: -999, y: -999 };
     const smooth = { x: -999, y: -999 };
     let primed = false;
-    let touching = false;
 
     const setTarget = (x, y) => {
       mouse.x = x;
@@ -72,47 +52,12 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
     };
 
     const onMouse = (e) => setTarget(e.clientX, e.clientY);
-    const onTouchStart = (e) => {
-      const t = e.touches[0];
-      if (!t) return;
-      touching = true;
-      setTarget(t.clientX, t.clientY);
-    };
-    const onTouchMove = (e) => {
-      const t = e.touches[0];
-      if (!t) return;
-      touching = true;
-      // Non-passive so we can cancel the browser's scroll / rubber-band and
-      // keep the finger driving the spotlight for the whole drag.
-      if (e.cancelable) e.preventDefault();
-      setTarget(t.clientX, t.clientY);
-    };
-    const onTouchEnd = () => { touching = false; };
-
     window.addEventListener("mousemove", onMouse);
-    window.addEventListener("touchstart", onTouchStart, { passive: true });
-    window.addEventListener("touchmove", onTouchMove, { passive: false });
-    window.addEventListener("touchend", onTouchEnd, { passive: true });
-    window.addEventListener("touchcancel", onTouchEnd, { passive: true });
-
-    // On touch screens, show the reveal immediately (centred) so the effect is
-    // visible on load instead of waiting for a gesture.
-    if (autoDrift) {
-      primed = true;
-      smooth.x = mouse.x = vp.w / 2;
-      smooth.y = mouse.y = vp.h * 0.46;
-    }
 
     let raf;
     let lastX = NaN;
     let lastY = NaN;
-    const loop = (t) => {
-      // Ambient drift target when nobody is actively touching — a slow,
-      // non-repeating wander across the focal area of the artwork.
-      if (autoDrift && !touching) {
-        mouse.x = vp.w * (0.5 + 0.27 * Math.sin(t * 0.00037));
-        mouse.y = vp.h * (0.46 + 0.2 * Math.sin(t * 0.00059 + 1.3));
-      }
+    const loop = () => {
       smooth.x += (mouse.x - smooth.x) * EASE;
       smooth.y += (mouse.y - smooth.y) * EASE;
 
@@ -137,15 +82,7 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
     raf = requestAnimationFrame(loop);
 
     return () => {
-      window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMouse);
-      window.removeEventListener("touchstart", onTouchStart);
-      window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("touchend", onTouchEnd);
-      window.removeEventListener("touchcancel", onTouchEnd);
-      docEl.style.overflow = prevStyle.html;
-      document.body.style.overflow = prevStyle.body;
-      document.body.style.overscrollBehavior = prevStyle.overscroll;
       if (raf) cancelAnimationFrame(raf);
     };
   }, []);
