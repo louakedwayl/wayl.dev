@@ -98,22 +98,18 @@
 .hero-br {
   position: absolute;
   bottom: 40px;
-  left: 20px;
   right: 20px;
+  left: auto;
   z-index: 50;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 18px;
+  /* Always anchored right (no side-switch at the breakpoint); clamp so it
+     never overflows on very narrow phones. */
+  max-width: min(300px, calc(100vw - 40px));
 }
-@media (min-width: 640px) {
-  .hero-br {
-    bottom: 96px;
-    left: auto;
-    right: 40px;
-    max-width: 300px;
-  }
-}
+@media (min-width: 640px) { .hero-br { bottom: 96px; right: 40px; } }
 @media (min-width: 768px) { .hero-br { right: 56px; } }
 .hero-br-text {
   font-size: 13px;
