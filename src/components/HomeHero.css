@@ -74,6 +74,11 @@
 }
 @media (min-width: 640px) { .hero-heading-wrap { padding: 0 40px; } }
 @media (min-width: 768px) { .hero-heading-wrap { padding: 0 56px; } }
+/* Beyond 1500px, grow the left margin so the name stays inside a centred
+   ~1500px column instead of clinging to the viewport edge. */
+@media (min-width: 1500px) {
+  .hero-heading-wrap { padding-left: calc(56px + (100vw - 1500px) * 0.18); }
+}
 .hero-title {
   margin: 0;
   color: #fff;
@@ -111,6 +116,11 @@
 }
 @media (min-width: 640px) { .hero-br { bottom: 96px; right: 40px; } }
 @media (min-width: 768px) { .hero-br { right: 56px; } }
+/* Mirror the heading: grow the right margin past 1500px so the role block
+   stays inside the same centred column. */
+@media (min-width: 1500px) {
+  .hero-br { right: calc(56px + (100vw - 1500px) * 0.18); }
+}
 .hero-br-text {
   font-size: 13px;
   line-height: 1.65;
