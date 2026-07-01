@@ -33,50 +33,13 @@ export default function HomePage({ page, onNavigate, lang, onChangeLang }) {
     if (!reveal) return;
 
     const coarse = window.matchMedia("(hover: none), (pointer: coarse)").matches;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // ---- Mobile / touch: a slow, non-interactive intro that grows the moss
-    //      reveal from the top-right until it covers the whole rock, then
-    //      settles on the fully-mossed image. No input. ----
+    // ---- Mobile / touch: no reveal animation — show the fully-mossed image
+    //      straight away. No input. ----
     if (coarse) {
-      const showAll = () => {
-        reveal.style.maskImage = "none";
-        reveal.style.webkitMaskImage = "none";
-      };
-      if (reduce) { showAll(); return; } // accessible: full moss, no animation
-
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      const DURATION = 24000;             // ms for the moss to spread over everything
-      const R0 = 150;                     // seed radius (the first top-right patch)
-      const RMAX = Math.hypot(w, h) * 2.4;
-      const x0 = w * 0.78, y0 = h * 0.40; // start: top-right of the rock
-      const x1 = w * 0.50, y1 = h * 0.55; // drift toward the centre as it grows
-      const ease = (p) => (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2);
-      // The gradient's opaque core reaches to 40% of r — once that covers every
-      // corner, the whole rock is mossed over.
-      const covers = (cx, cy, r) =>
-        0.4 * r >= Math.max(
-          Math.hypot(cx, cy), Math.hypot(w - cx, cy),
-          Math.hypot(cx, h - cy), Math.hypot(w - cx, h - cy),
-        );
-
-      let raf;
-      let t0;
-      const grow = (t) => {
-        if (t0 === undefined) t0 = t;
-        const k = ease(Math.min((t - t0) / DURATION, 1));
-        const cx = x0 + (x1 - x0) * k;
-        const cy = y0 + (y1 - y0) * k;
-        const r = R0 + (RMAX - R0) * k;
-        const m = maskFor(cx, cy, r);
-        reveal.style.webkitMaskImage = m;
-        reveal.style.maskImage = m;
-        if (k >= 1 || covers(cx, cy, r)) { showAll(); return; } // fully mossed → stop
-        raf = requestAnimationFrame(grow);
-      };
-      raf = requestAnimationFrame(grow);
-      return () => { if (raf) cancelAnimationFrame(raf); };
+      reveal.style.maskImage = "none";
+      reveal.style.webkitMaskImage = "none";
+      return;
     }
 
     // ---- Desktop: cursor-driven spotlight ----
